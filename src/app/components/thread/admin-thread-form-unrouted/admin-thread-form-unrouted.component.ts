@@ -1,3 +1,4 @@
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
+import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 @Component({
   selector: 'app-admin-thread-form-unrouted',
@@ -23,6 +25,8 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   oDynamicDialogRef: DynamicDialogRef | undefined;
 
   constructor(
+    private threadAjaxService: ThreadAjaxService,
+
     private formBuilder: FormBuilder,
     private oHttpClient: HttpClient,
     private router: Router,
@@ -44,7 +48,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.oHttpClient.get<IThread>("http://localhost:8085/thread/" + this.id).subscribe({
+      this.threadAjaxService.getOne(this.id).subscribe({
         next: (data: IThread) => {
           this.oThread = data;
           this.initializeForm(this.oThread);
@@ -66,7 +70,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.threadForm.valid) {
       if (this.operation === 'NEW') {
-        this.oHttpClient.post<IThread>('http://localhost:8085/thread', this.threadForm.value).subscribe({
+        this.threadAjaxService.createThread(this.threadForm.value).subscribe({
           next: (data: IThread) => {
             this.oThread = { "user": {} } as IThread;
             this.initializeForm(this.oThread); //el id se genera en el servidor
@@ -79,8 +83,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.oHttpClient.put<IThread>('http://localhost:8085/thread', this.threadForm.value).subscribe({
-          next: (data: IThread) => {
+        this.threadAjaxService.updateThread(this.threadForm.value).subscribe({          next: (data: IThread) => {
             this.oThread = data;
             this.initializeForm(this.oThread);
             this.oMatSnackBar.open('Thread has been updated.', '', { duration: 1200 });

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { IReply } from 'src/app/model/model.interfaces';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
@@ -13,7 +13,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 })
 export class AdminReplyDetailUnroutedComponent implements OnInit {
 
-  id: number = 1;
+  @Input() id: number = 1;
   oReply: IReply = {} as IReply;
   status: HttpErrorResponse | null = null;
 
