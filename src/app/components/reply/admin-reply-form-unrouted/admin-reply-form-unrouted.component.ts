@@ -19,7 +19,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; // new or edit
 
   replyForm!: FormGroup;
-  oReply: IReply = {user: {}}  as IReply;
+  oReply: IReply = {user: {}, thread:{}}  as IReply;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -40,17 +40,21 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       title: [reply.title, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       body: [reply.body, [Validators.required, Validators.maxLength(1000)]],
     
-      thread: [reply.thread, [Validators.required]],
+     
       user: this.formBuilder.group({
         id: [reply.user.id]
-      })
+      }),
+      thread: this.formBuilder.group({
+        id: [reply.thread.id]
+      }),
+      
       
     });
   }
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.httpClient.get<IReply>("http://localhost:8083/reply/" + this.id).subscribe({
+      this.httpClient.get<IReply>("http://localhost:8085/reply/" + this.id).subscribe({
         next: (data: IReply) => {
           this.oReply = data;
           this.initializeForm(this.oReply);
@@ -72,7 +76,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.replyForm.valid) {
       if (this.operation == 'NEW') {
-        this.httpClient.post<IReply>("http://localhost:8083/reply", this.replyForm.value).subscribe({
+        this.httpClient.post<IReply>("http://localhost:8085/reply", this.replyForm.value).subscribe({
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
@@ -85,7 +89,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.httpClient.put<IReply>("http://localhost:8083/reply", this.replyForm.value).subscribe({
+        this.httpClient.put<IReply>("http://localhost:8085/reply", this.replyForm.value).subscribe({
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
@@ -121,7 +125,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
     onShowThreadSelection() {
       this.oDynamicDialogRef = this.oDialogService.open(AdminThreadSelectionUnroutedComponent, {
-        header: 'Select a User',
+        header: 'Select a Thread',
         width: '80%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
@@ -132,7 +136,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
         if (oThread) {
           console.log(oThread);
           this.oReply.thread = oThread;
-          this.replyForm.controls['user'].patchValue({ id: oThread.id })    
+          this.replyForm.controls['thread'].patchValue({ id: oThread.id })    
           
         }
       });

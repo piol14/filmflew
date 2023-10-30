@@ -31,7 +31,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IThreadPage>("http://localhost:8083/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oHttpClient.get<IThreadPage>("http://localhost:8085/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
       next: (data: IThreadPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -80,7 +80,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     this.oCconfirmationService.confirm({
       accept: () => {
         this.oMatSnackBar.open("The thread has been removed.", '', { duration: 1200 });
-        this.oHttpClient.delete("http://localhost:8083/thread/" + this.oThreadToRemove?.id).subscribe({
+        this.oHttpClient.delete("http://localhost:8085/thread/" + this.oThreadToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },

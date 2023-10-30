@@ -30,21 +30,24 @@
           </mat-form-field>
         </div>
         <div formGroupName="thread">
-        <div class="form-group">
-          <mat-form-field>
-            <mat-label>Thread:</mat-label>
-            <input matInput formControlName="thread" placeholder="ID del thread" required readonly="">
-            <mat-error *ngIf="hasError('thread', 'required')">El ID del thread es requerido</mat-error>
-          </mat-form-field>
+          <div class="form-group">
+            <mat-form-field style="margin-right: 10px;">
+              <mat-label>Thread:</mat-label>
+              <input matInput formControlName="id" placeholder="ID del thread" required readonly>
+              <mat-error *ngIf="hasError('thread', 'required')">El ID del thread es requerido</mat-error>
+            </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowThreadSelection()">
+              <i class="pi pi-search"></i> Find a thread
+            </button>
+          </div>
         </div>
-      </div>
        
         <div formGroupName="user">
           <div class="form-group">
-            <mat-form-field [style.width.px]=100>
+            <mat-form-field [style.width.px]=100 style="margin-right: 10px;">
               <mat-label>USER:</mat-label>
               <input matInput formControlName="id" placeholder="USER" required readonly>
-            </mat-form-field><br>
+            </mat-form-field>
             <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
               Find a user</button>
             {{oReply.user.name}} {{oReply.user.surname}}

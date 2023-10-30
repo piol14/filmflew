@@ -44,7 +44,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.oHttpClient.get<IThread>("http://localhost:8083/thread/" + this.id).subscribe({
+      this.oHttpClient.get<IThread>("http://localhost:8085/thread/" + this.id).subscribe({
         next: (data: IThread) => {
           this.oThread = data;
           this.initializeForm(this.oThread);
@@ -66,7 +66,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.threadForm.valid) {
       if (this.operation === 'NEW') {
-        this.oHttpClient.post<IThread>('http://localhost:8083/thread', this.threadForm.value).subscribe({
+        this.oHttpClient.post<IThread>('http://localhost:8085/thread', this.threadForm.value).subscribe({
           next: (data: IThread) => {
             this.oThread = { "user": {} } as IThread;
             this.initializeForm(this.oThread); //el id se genera en el servidor
@@ -79,7 +79,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.oHttpClient.put<IThread>('http://localhost:8083/thread', this.threadForm.value).subscribe({
+        this.oHttpClient.put<IThread>('http://localhost:8085/thread', this.threadForm.value).subscribe({
           next: (data: IThread) => {
             this.oThread = data;
             this.initializeForm(this.oThread);

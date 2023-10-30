@@ -33,7 +33,7 @@ export class AdminReplyDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {
-    this.oHttpClient.get<IReply>("http://localhost:8083/reply/" + this.id).subscribe({
+    this.oHttpClient.get<IReply>("http://localhost:8085/reply/" + this.id).subscribe({
       next: (data: IReply) => {
         this.oReply = data;
       },

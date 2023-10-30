@@ -41,7 +41,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.oHttpClient.get<IUser>("http://localhost:8083/user/" + this.id).subscribe({
+      this.oHttpClient.get<IUser>("http://localhost:8085/user/" + this.id).subscribe({
         next: (data: IUser) => {
           this.oUser = data;
           this.initializeForm(this.oUser);
@@ -63,7 +63,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       if (this.operation == 'NEW') {
-        this.oHttpClient.post<IUser>("http://localhost:8083/user", this.userForm.value).subscribe({
+        this.oHttpClient.post<IUser>("http://localhost:8085/user", this.userForm.value).subscribe({
           next: (data: IUser) => {
             this.oUser = data;
             this.initializeForm(this.oUser);
@@ -78,7 +78,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
         })
 
       } else {
-        this.oHttpClient.put<IUser>("http://localhost:8083/user", this.userForm.value).subscribe({
+        this.oHttpClient.put<IUser>("http://localhost:8085/user", this.userForm.value).subscribe({
           next: (data: IUser) => {
             this.oUser = data;
             this.initializeForm(this.oUser);

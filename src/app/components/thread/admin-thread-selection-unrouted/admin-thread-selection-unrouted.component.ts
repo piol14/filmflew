@@ -11,7 +11,8 @@ import { IThreadPage, IThread } from 'src/app/model/model.interfaces';
 })
 export class AdminThreadSelectionUnroutedComponent implements OnInit {
 
-  oPage: IThreadPage | null = null;
+
+  oPage: any = [];
   orderField: string = 'id';
   orderDirection: string = 'asc';
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -29,7 +30,7 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IThreadPage>('http://localhost:8083/thread' + '?size=' + this.oPaginatorState.rows + '&page=' + this.oPaginatorState.page + '&sort=' + this.orderField + ',' + this.orderDirection).subscribe({
+    this.oHttpClient.get<IThreadPage>('http://localhost:8085/thread' + '?size=' + this.oPaginatorState.rows + '&page=' + this.oPaginatorState.page + '&sort=' + this.orderField + ',' + this.orderDirection).subscribe({
       next: (data: IThreadPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

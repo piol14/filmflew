@@ -34,7 +34,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IReplyPage>("http://localhost:8083/reply" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oHttpClient.get<IReplyPage>("http://localhost:8085/reply" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
       next: (data: IReplyPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -83,7 +83,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     this.oCconfirmationService.confirm({
       accept: () => {
         this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
-        this.oHttpClient.delete("http://localhost:8083/reply/" + this.oReplyToRemove?.id).subscribe({
+        this.oHttpClient.delete("http://localhost:8085/reply/" + this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },

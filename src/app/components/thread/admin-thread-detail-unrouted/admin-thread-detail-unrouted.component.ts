@@ -33,7 +33,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {
-    this.oHttpClient.get<IThread>("http://localhost:8083/thread/" + this.id).subscribe({
+    this.oHttpClient.get<IThread>("http://localhost:8085/thread/" + this.id).subscribe({
       next: (data: IThread) => {
         this.oThread = data;
       },
