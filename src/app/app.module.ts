@@ -47,6 +47,7 @@ import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
 import { UserAjaxService } from './service/user.ajax.service.service';
+import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { UserAjaxService } from './service/user.ajax.service.service';
     AdminThreadPlistUnroutedComponent,
     AdminThreadDetailUnroutedComponent,
     AdminThreadFormUnroutedComponent,
+    AdminThreadSelectionUnroutedComponent,
     //--
     AdminReplyPlistRoutedComponent,
     AdminReplyViewRoutedComponent,
@@ -79,6 +81,7 @@ import { UserAjaxService } from './service/user.ajax.service.service';
     AdminReplyPlistUnroutedComponent,
     AdminReplyDetailUnroutedComponent,
     AdminReplyFormUnroutedComponent,
+   
   ],
   imports: [
     BrowserModule,

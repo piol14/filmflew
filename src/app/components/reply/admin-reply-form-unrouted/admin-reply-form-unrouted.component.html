@@ -29,23 +29,29 @@
             <mat-error *ngIf="hasError('body', 'maxlength')">Excede el límite de caracteres</mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group">
-          <mat-form-field>
-            <mat-label>Usuario:</mat-label>
-            <input matInput formControlName="user" placeholder="Usuario" required>
-            <mat-error *ngIf="hasError('user', 'required')">El nombre de usuario es requerido</mat-error>
-          </mat-form-field>
-        </div>
+        <div formGroupName="thread">
         <div class="form-group">
           <mat-form-field>
             <mat-label>Thread:</mat-label>
-            <input matInput formControlName="thread" placeholder="ID del thread" required>
+            <input matInput formControlName="thread" placeholder="ID del thread" required readonly="">
             <mat-error *ngIf="hasError('thread', 'required')">El ID del thread es requerido</mat-error>
           </mat-form-field>
         </div>
-
+      </div>
+       
+        <div formGroupName="user">
+          <div class="form-group">
+            <mat-form-field [style.width.px]=100>
+              <mat-label>USER:</mat-label>
+              <input matInput formControlName="id" placeholder="USER" required readonly>
+            </mat-form-field><br>
+            <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
+              Find a user</button>
+            {{oReply.user.name}} {{oReply.user.surname}}
+          </div>
+        </div>
         <div class="text-center mt-5">
-          <button mat-raised-button color="primary" type="submit">Save Thread</button>
+          <button mat-raised-button color="primary" type="submit">Save Reply</button>
         </div>
       </form>
     </div>
