@@ -16,6 +16,7 @@ export interface Pageable {
 }
 
 export interface IPage<T> {
+    
     content: T[];
     pageable: Pageable;
     totalPages: number;

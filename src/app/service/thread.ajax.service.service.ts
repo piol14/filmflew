@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IThread } from '../model/model.interfaces';
+import { IThread, IThreadPage } from '../model/model.interfaces';
 
 @Injectable()
 export class ThreadAjaxService {
@@ -24,5 +24,10 @@ export class ThreadAjaxService {
 
     removeOne(id: number): Observable<number> {
         return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
+    }
+    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IThreadPage> {
+        if (!size) size = 10;
+        if (!page) page = 0;
+        return this.oHttpClient.get<IThreadPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
 }

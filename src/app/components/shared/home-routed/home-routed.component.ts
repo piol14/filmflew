@@ -94,7 +94,7 @@ export class HomeRoutedComponent implements OnInit {
   cargar(): void {
     console.log("Cargando AJAX...");
 
-    this.http.get("http://localhost:8085/user/" + this.id).subscribe({
+    this.http.get("http://localhost:8083/user/" + this.id).subscribe({
       next: (data: any) => {
         console.log(data);
         this.datos = data;
