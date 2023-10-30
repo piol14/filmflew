@@ -7,6 +7,7 @@ import { IReply, IThread, IUser, formOperation } from 'src/app/model/model.inter
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminThreadSelectionUnroutedComponent } from '../../thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
+import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
   selector: 'app-admin-reply-form-unrouted',
@@ -25,8 +26,9 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   oDynamicDialogRef: DynamicDialogRef | undefined;
 
   constructor(
+    private replyService: ReplyAjaxService,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
+
     private router: Router,
     private matSnackBar: MatSnackBar,
     public oDialogService: DialogService
@@ -54,7 +56,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.httpClient.get<IReply>("http://localhost:8085/reply/" + this.id).subscribe({
+      this.replyService.getOne(this.id).subscribe({
         next: (data: IReply) => {
           this.oReply = data;
           this.initializeForm(this.oReply);
@@ -68,7 +70,6 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       this.initializeForm(this.oReply);
     }
   }
-
   public hasError = (controlName: string, errorName: string) => {
     return this.replyForm.controls[controlName].hasError(errorName);
   }
@@ -76,7 +77,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.replyForm.valid) {
       if (this.operation == 'NEW') {
-        this.httpClient.post<IReply>("http://localhost:8085/reply", this.replyForm.value).subscribe({
+        this.replyService.createReply(this.replyForm.value).subscribe({
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
@@ -89,7 +90,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.httpClient.put<IReply>("http://localhost:8085/reply", this.replyForm.value).subscribe({
+        this.replyService.updateReply(this.replyForm.value).subscribe({
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);

@@ -48,6 +48,8 @@ import { AdminUserSelectionUnroutedComponent } from './components/user/admin-use
 import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
 import { UserAjaxService } from './service/user.ajax.service.service';
 import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
+import { ReplyAjaxService } from './service/reply.ajax.service.service';
+import { ThreadAjaxService } from './service/thread.ajax.service.service';
 //--
 @NgModule({
   declarations: [
@@ -110,7 +112,9 @@ import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin
     DialogService,
     ConfirmationService,
     MatSnackBar,
-    UserAjaxService
+    UserAjaxService,
+    ReplyAjaxService,
+    ThreadAjaxService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IReply, IReplyPage} from 'src/app/model/model.interfaces';
+import { IReply, IReplyPage } from 'src/app/model/model.interfaces';
 import { AdminReplyDetailUnroutedComponent } from '../admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
   selector: 'app-admin-reply-plist-unrouted',
@@ -23,8 +24,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   oReplyToRemove: IReply | null = null;
 
   constructor(
-    private oHttpClient: HttpClient,
-    public oDialogService: DialogService,    
+    private replyService: ReplyAjaxService,
+    public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
   ) { }
@@ -34,17 +35,17 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IReplyPage>("http://localhost:8085/reply" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
-      next: (data: IReplyPage) => {
-        this.oPage = data;
-        this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.oPage.error = error;
-        this.status = error;
-      }
-    })
+    this.replyService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection)
+      .subscribe({
+        next: (data: IReplyPage) => {
+          this.oPage = data;
+          this.oPaginatorState.pageCount = data.totalPages;
+          console.log(this.oPaginatorState);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      });
   }
 
   onPageChang(event: PaginatorState) {
@@ -82,22 +83,22 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     this.oReplyToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
-        this.oHttpClient.delete("http://localhost:8085/reply/" + this.oReplyToRemove?.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.oPage.error = error;
-            this.status = error;
-            this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
-          }
-        });
+        if (this.oReplyToRemove) {
+          this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
+          this.replyService.removeOne(this.oReplyToRemove.id).subscribe({
+            next: () => {
+              this.getPage();
+            },
+            error: (error: HttpErrorResponse) => {
+              this.status = error;
+              this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
+            }
+          });
+        }
       },
       reject: (type: ConfirmEventType) => {
         this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
       }
     });
   }
-
 }
