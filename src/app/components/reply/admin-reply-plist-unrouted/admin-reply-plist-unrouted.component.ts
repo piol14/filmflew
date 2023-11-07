@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IReply, IReplyPage } from 'src/app/model/model.interfaces';
+import { IAlquiler, IAlquilerPage } from 'src/app/model/model.interfaces';
 import { AdminReplyDetailUnroutedComponent } from '../admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
@@ -21,7 +21,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oReplyToRemove: IReply | null = null;
+  oReplyToRemove: IAlquiler | null = null;
 
   constructor(
     private replyService: ReplyAjaxService,
@@ -37,7 +37,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   getPage(): void {
     this.replyService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection)
       .subscribe({
-        next: (data: IReplyPage) => {
+        next: (data: IAlquilerPage) => {
           this.oPage = data;
           this.oPaginatorState.pageCount = data.totalPages;
           console.log(this.oPaginatorState);
@@ -66,7 +66,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
 
   ref: DynamicDialogRef | undefined;
 
-  doView(u: IReply) {
+  doView(u: IAlquiler) {
     this.ref = this.oDialogService.open(AdminReplyDetailUnroutedComponent, {
       data: {
         id: u.id
@@ -79,7 +79,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     });
   }
 
-  doRemove(u: IReply) {
+  doRemove(u: IAlquiler) {
     this.oReplyToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {

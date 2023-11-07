@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { IReply } from 'src/app/model/model.interfaces';
+import { IAlquiler } from 'src/app/model/model.interfaces';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 
@@ -14,7 +14,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 export class AdminReplyDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
-  oReply: IReply = {} as IReply;
+  oReply: IAlquiler = {} as IAlquiler;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -33,7 +33,7 @@ export class AdminReplyDetailUnroutedComponent implements OnInit {
 
   getOne(): void {
     this.replyAjaxService.getOne(this.id).subscribe({
-      next: (data: IReply) => {
+      next: (data: IAlquiler) => {
         this.oReply = data;
       },
       error: (error: HttpErrorResponse) => {

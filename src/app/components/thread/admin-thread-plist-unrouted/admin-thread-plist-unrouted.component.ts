@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IThread, IThreadPage } from 'src/app/model/model.interfaces';
+import { IPelicula, IPeliculaPage } from 'src/app/model/model.interfaces';
 import { AdminThreadDetailUnroutedComponent } from '../admin-thread-detail-unrouted/admin-thread-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -19,7 +19,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oThreadToRemove: IThread | null = null;
+  oThreadToRemove: IPelicula | null = null;
   constructor(
     private threadajaxservice: ThreadAjaxService,
     private oHttpClient: HttpClient,
@@ -34,7 +34,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
 
   getPage(): void {
     this.threadajaxservice.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
-      next: (data: IThreadPage) => {
+      next: (data: IPeliculaPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
@@ -64,7 +64,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
 
   ref: DynamicDialogRef | undefined;
 
-  doView(u: IThread) {
+  doView(u: IPelicula) {
     this.ref = this.oDialogService.open(AdminThreadDetailUnroutedComponent, {
       data: {
         id: u.id
@@ -77,7 +77,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     });
   }
 
-  doRemove(u: IThread) {
+  doRemove(u: IPelicula) {
     this.oThreadToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {

@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { IReply, IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
+import { IAlquiler, IPelicula, ICliente, formOperation } from 'src/app/model/model.interfaces';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminThreadSelectionUnroutedComponent } from '../../thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
@@ -19,8 +19,8 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; // new or edit
 
-  replyForm!: FormGroup;
-  oReply: IReply = {user: {}, thread:{}}  as IReply;
+ peliculaForm!: FormGroup;
+  oReply: IAlquiler = {user: {}, thread:{}}  as IAlquiler;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -36,8 +36,8 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
     this.initializeForm(this.oReply);
   }
 
-  initializeForm(reply: IReply) {
-    this.replyForm = this.formBuilder.group({
+  initializeForm(reply: IAlquiler) {
+    this peliculaForm = this.formBuilder.group({
       id: [reply.id],
       title: [reply.title, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       body: [reply.body, [Validators.required, Validators.maxLength(1000)]],
@@ -57,7 +57,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   ngOnInit() {
     if (this.operation == 'EDIT') {
       this.replyService.getOne(this.id).subscribe({
-        next: (data: IReply) => {
+        next: (data: IAlquiler) => {
           this.oReply = data;
           this.initializeForm(this.oReply);
         },
@@ -71,14 +71,14 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
     }
   }
   public hasError = (controlName: string, errorName: string) => {
-    return this.replyForm.controls[controlName].hasError(errorName);
+    return this peliculaForm.controls[controlName].hasError(errorName);
   }
 
   onSubmit() {
-    if (this.replyForm.valid) {
+    if (this peliculaForm.valid) {
       if (this.operation == 'NEW') {
-        this.replyService.createReply(this.replyForm.value).subscribe({
-          next: (data: IReply) => {
+        this.replyService.createReply(this peliculaForm.value).subscribe({
+          next: (data: IAlquiler) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
             this.matSnackBar.open("Reply has been created.", '', { duration: 1200 });
@@ -90,8 +90,8 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.replyService.updateReply(this.replyForm.value).subscribe({
-          next: (data: IReply) => {
+        this.replyService.updateReply(this peliculaForm.value).subscribe({
+          next: (data: IAlquiler) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
             this.matSnackBar.open("Reply has been updated.", '', { duration: 1200 });
@@ -114,11 +114,11 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       maximizable: true
     });
 
-    this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
+    this.oDynamicDialogRef.onClose.subscribe((oUser: ICliente) => {
       if (oUser) {
         console.log(oUser);
         this.oReply.user = oUser;
-        this.replyForm.controls['user'].patchValue({ id: oUser.id })    
+        this peliculaForm.controls['user'].patchValue({ id: oUser.id })    
         
       }
     });
@@ -133,11 +133,11 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
         maximizable: true
       });
   
-      this.oDynamicDialogRef.onClose.subscribe((oThread: IThread) => {
+      this.oDynamicDialogRef.onClose.subscribe((oThread: IPelicula) => {
         if (oThread) {
           console.log(oThread);
           this.oReply.thread = oThread;
-          this.replyForm.controls['thread'].patchValue({ id: oThread.id })    
+          this peliculaForm.controls['thread'].patchValue({ id: oThread.id })    
           
         }
       });

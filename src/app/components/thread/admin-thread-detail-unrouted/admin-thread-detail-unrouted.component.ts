@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { IThread } from 'src/app/model/model.interfaces';
+import { IPelicula } from 'src/app/model/model.interfaces';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
  
 @Component({
@@ -13,7 +13,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oThread: IThread = { user: {} } as IThread;
+  oThread: IPelicula = { user: {} } as IPelicula;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -32,7 +32,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   getOne(): void {
     this.threadService.getOne(this.id).subscribe({
-      next: (data: IThread) => {
+      next: (data: IPelicula) => {
         this.oThread = data;
       },
       error: (error: HttpErrorResponse) => {

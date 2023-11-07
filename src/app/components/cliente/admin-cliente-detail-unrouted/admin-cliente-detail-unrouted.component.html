@@ -15,33 +15,27 @@
             </tr>
             <tr>
                 <td>id</td>
-                <td>{{oUser.id}}</td>
+                <td>{{oCliente.id}}</td>
             </tr>
             <tr>
-                <td>name</td>
-                <td>{{oUser.name}}</td>
+                <td>nombre</td>
+                <td>{{oCliente.nombre}}</td>
             </tr>
             <tr>
-                <td>surname</td>
-                <td>{{oUser.surname}}</td>
+                <td>direccion</td>
+                <td>{{oCliente.direccion}}</td>
             </tr>
             <tr>
-                <td>lastname</td>
-                <td>{{oUser.lastname}}</td>
+                <td>telefono</td>
+                <td>{{oCliente.telefono}}</td>
             </tr>
+           
+           
             <tr>
-                <td>email</td>
-                <td>{{oUser.email}}</td>
-            </tr>
-            <tr>
-                <td>username</td>
-                <td>{{oUser.username}}</td>
-            </tr>
-            <tr>
-                <td>role</td>
+                <td>rol</td>
                 <td>
-                    <span *ngIf="oUser.role==true">Admin</span>
-                    <span *ngIf="oUser.role==false">User</span>
+                    <span *ngIf="oCliente.role==true">Admin</span>
+                    <span *ngIf="oCliente.role==false">User</span>
                 </td>
             </tr>
         </tbody>

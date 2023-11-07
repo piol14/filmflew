@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IUser, IUserPage } from 'src/app/model/model.interfaces';
+import { ICliente, IClientePage } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-user-selection-unrouted',
@@ -17,7 +17,7 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oUserToRemove: IUser | null = null;
+  oUserToRemove: ICliente | null = null;
 
   constructor(
     private oHttpClient: HttpClient,
@@ -30,8 +30,8 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IUserPage>("http://localhost:8083/user" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
-      next: (data: IUserPage) => {
+    this.oHttpClient.get<IClientePage>("http://localhost:8083/user" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+      next: (data: IClientePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
@@ -59,7 +59,7 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  onSelectUser(oUser: IUser) {
+  onSelectUser(oUser: ICliente) {
     this.oDynamicDialogRef.close(oUser);
   }
 

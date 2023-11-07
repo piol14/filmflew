@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IThreadPage, IThread } from 'src/app/model/model.interfaces';
+import { IPeliculaPage, IPelicula } from 'src/app/model/model.interfaces';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
   orderDirection: string = 'asc';
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oThreadToRemove: IThread | null = null;
+  oThreadToRemove: IPelicula | null = null;
   
   constructor(
     private oHttpClient: HttpClient,
@@ -33,7 +33,7 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
 
   getPage(): void {
     this.threadayaxservice.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
-      next: (data: IThreadPage) => {
+      next: (data: IPeliculaPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
@@ -56,7 +56,7 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  onSelectThread(thread: IThread) {
+  onSelectThread(thread: IPelicula) {
     this.oDynamicDialogRef.close(thread);
   }
 }

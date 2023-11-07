@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
+import { IPelicula, ICliente, formOperation } from 'src/app/model/model.interfaces';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
@@ -19,7 +19,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; //new or edit
 
   threadForm!: FormGroup;
-  oThread: IThread = { user: {} } as IThread;
+  oThread: IPelicula = { user: {} } as IPelicula;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -36,7 +36,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
     this.initializeForm(this.oThread);
   }
 
-  initializeForm(oThread: IThread) {
+  initializeForm(oThread: IPelicula) {
     this.threadForm = this.formBuilder.group({
       id: [oThread.id],
       title: [oThread.title, [Validators.required, Validators.minLength(1), Validators.maxLength(2048)]],
@@ -49,7 +49,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   ngOnInit() {
     if (this.operation == 'EDIT') {
       this.threadAjaxService.getOne(this.id).subscribe({
-        next: (data: IThread) => {
+        next: (data: IPelicula) => {
           this.oThread = data;
           this.initializeForm(this.oThread);
         },
@@ -71,8 +71,8 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
     if (this.threadForm.valid) {
       if (this.operation === 'NEW') {
         this.threadAjaxService.createThread(this.threadForm.value).subscribe({
-          next: (data: IThread) => {
-            this.oThread = { "user": {} } as IThread;
+          next: (data: IPelicula) => {
+            this.oThread = { "user": {} } as IPelicula;
             this.initializeForm(this.oThread); //el id se genera en el servidor
             this.oMatSnackBar.open('Thread has been created.', '', { duration: 1200 });
             this.router.navigate(['/admin', 'thread', 'view', data]);
@@ -83,7 +83,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.threadAjaxService.updateThread(this.threadForm.value).subscribe({          next: (data: IThread) => {
+        this.threadAjaxService.updateThread(this.threadForm.value).subscribe({          next: (data: IPelicula) => {
             this.oThread = data;
             this.initializeForm(this.oThread);
             this.oMatSnackBar.open('Thread has been updated.', '', { duration: 1200 });
@@ -107,7 +107,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
       maximizable: true
     });
 
-    this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
+    this.oDynamicDialogRef.onClose.subscribe((oUser: ICliente) => {
       if (oUser) {
         console.log(oUser);
         this.oThread.user = oUser;

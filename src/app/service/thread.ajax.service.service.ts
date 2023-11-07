@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IThread, IThreadPage } from '../model/model.interfaces';
+import { IPelicula, IPeliculaPage } from '../model/model.interfaces';
 
 @Injectable()
 export class ThreadAjaxService {
@@ -10,24 +10,24 @@ export class ThreadAjaxService {
 
     constructor(private oHttpClient: HttpClient) { }
 
-    getOne(id: number): Observable<IThread> {
-        return this.oHttpClient.get<IThread>(this.sUrl + "/" + id);
+    getOne(id: number): Observable<IPelicula> {
+        return this.oHttpClient.get<IPelicula>(this.sUrl + "/" + id);
     }
 
-    createThread(thread: IThread): Observable<IThread> {
-        return this.oHttpClient.post<IThread>(this.sUrl, thread);
+    createThread(thread: IPelicula): Observable<IPelicula> {
+        return this.oHttpClient.post<IPelicula>(this.sUrl, thread);
     }
 
-    updateThread(thread: IThread): Observable<IThread> {
-        return this.oHttpClient.put<IThread>(this.sUrl, thread);
+    updateThread(thread: IPelicula): Observable<IPelicula> {
+        return this.oHttpClient.put<IPelicula>(this.sUrl, thread);
     }
 
     removeOne(id: number): Observable<number> {
         return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
     }
-    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IThreadPage> {
+    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IPeliculaPage> {
         if (!size) size = 10;
         if (!page) page = 0;
-        return this.oHttpClient.get<IThreadPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
+        return this.oHttpClient.get<IPeliculaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
 }

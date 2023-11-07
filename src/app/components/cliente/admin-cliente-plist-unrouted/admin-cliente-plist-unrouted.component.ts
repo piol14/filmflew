@@ -3,28 +3,28 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IUser, IUserPage } from 'src/app/model/model.interfaces';
-import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
+import { ICliente, IClientePage } from 'src/app/model/model.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+import { ClienteAjaxService } from 'src/app/service/cliente.ajax.service.service';
+import { AdminClienteDetailUnroutedComponent } from '../admin-cliente-detail-unrouted/admin-cliente-detail-unrouted.component';
 
 @Component({
-  selector: 'app-admin-user-plist-unrouted',
-  templateUrl: './admin-user-plist-unrouted.component.html',
-  styleUrls: ['./admin-user-plist-unrouted.component.css']
+  selector: 'app-admin-cliente-plist-unrouted',
+  templateUrl: './admin-cliente-plist-unrouted.component.html',
+  styleUrls: ['./admin-cliente-plist-unrouted.component.css']
 })
 
-export class AdminUserPlistUnroutedComponent implements OnInit {
+export class AdminClientePlistUnroutedComponent implements OnInit {
 
   oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oUserToRemove: IUser | null = null;
+  oUserToRemove: ICliente | null = null;
 
   constructor(
-    private oUserAjaxService: UserAjaxService,
+    private oClienteAjaxService: ClienteAjaxService,
     private oHttpClient: HttpClient,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
@@ -36,8 +36,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
-      next: (data: IUserPage) => {
+    this.oClienteAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
+      next: (data: IClientePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
@@ -67,8 +67,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
 
   ref: DynamicDialogRef | undefined;
 
-  doView(u: IUser) {
-    this.ref = this.oDialogService.open(AdminUserDetailUnroutedComponent, {
+  doView(u: ICliente) {
+    this.ref = this.oDialogService.open(AdminClienteDetailUnroutedComponent, {
       data: {
         id: u.id
       },
@@ -80,12 +80,12 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     });
   }
 
-  doRemove(u: IUser) {
+  doRemove(u: ICliente) {
     this.oUserToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
         this.oMatSnackBar.open("The user has been removed.", '', { duration: 1200 });
-        this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
+        this.oClienteAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },

@@ -43,37 +43,36 @@ export interface IEntity {
     id: number,
 }
 
-export interface IUser extends IEntity {
-    name: string,
-    surname: string,
-    lastname: string,
-    email: string,
-    username: string,
+export interface ICliente extends IEntity {
+    nombre: string,
+    direccion: string,
+    telefono: string,
+   
     role: boolean,
-    threads: number,
-    replies: number
+   
 }
 
-export interface IUserPage extends IPage<IUser> {
+export interface IClientePage extends IPage<ICliente> {
 }
 
-export interface IThread extends IEntity {
-    title: string,
-    user: IUser,
-    replies: number
+export interface IPelicula extends IEntity {
+    director: string,
+    duracion: number,
+    genero: string, 
+    titulo: string
 }
 
-export interface IThreadPage extends IPage<IThread> {
+export interface IPeliculaPage extends IPage<IPelicula> {
 }
 
-export interface IReply extends IEntity {
-    title: string,
-    body: string,
-    user: IUser,
-    thread: IThread
+export interface IAlquiler extends IEntity {
+    fecha_alquiler: string,
+    fecha_devolucion: string,
+    cliente_id: ICliente,
+    pelicula_id: IPelicula
 }
 
-export interface IReplyPage extends IPage<IReply> {
+export interface IAlquilerPage extends IPage<IAlquiler> {
 }
 
 export type formOperation = 'EDIT' | 'NEW';

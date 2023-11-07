@@ -21,44 +21,36 @@
       <thead>
         <tr>
           <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('name')">Name</th>
-          <th (click)="doOrder('surname')">Surname</th>
-          <th (click)="doOrder('lastname')">Last name</th>
-          <th (click)="doOrder('email')">Email</th>
-          <th (click)="doOrder('username')">Username</th>
-          <th (click)="doOrder('role')">Role</th>
-          <th>Threads</th>
-          <th>Replies</th>
+          <th (click)="doOrder('nombre')">Nombre</th>
+          <th (click)="doOrder('direccion')">dirrecion</th>
+          <th (click)="doOrder('telefono')">telefono</th>
+          <th (click)="doOrder('rol')">Rol</th>
+          <th>Alquileres</th>
+    
           <th>Tools</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let u of oPage.content" class="align-middle">
           <td class="text-end"><strong>{{u.id}}</strong></td>
-          <td>{{u.name}}</td>
-          <td>{{u.surname}}</td>
-          <td>{{u.lastname}}</td>
-          <td>{{u.email}}</td>
-          <td>{{u.username}}</td>
+          <td>{{u.nombre}}</td>
+          <td>{{u.dirrecion}}</td>
+          <td>{{u.telefono}}</td>
+          
           <td class="text-center">
-            <span *ngIf="u.role==true">Admin</span>
-            <span *ngIf="u.role==false">User</span>
+            <span *ngIf="u.rol==true">Admin</span>
+            <span *ngIf="u.rol==false">User</span>
           </td>
-          <td class="text-center">
-            {{u.threads}}
-          </td>
-          <td class="text-center">
-            {{u.replies}}
-          </td>
+          
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button class="btn btn-primary" [routerLink]="['/admin','user','view',u.id]"><i
+              <button class="btn btn-primary" [routerLink]="['/admin','cliente','view',u.id]"><i
                   class="pi pi-eye"></i></button>
               <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="btn btn-warning" [routerLink]="['/admin','user','edit',u.id]"><i
+              <button class="btn btn-warning" [routerLink]="['/admin','cliente','edit',u.id]"><i
                   class="pi pi-pencil"></i></button>
-              <button *ngIf="u.threads==0 && u.replies==0" class="btn btn-danger" (click)="doRemove(u)"><i
-                  class="pi pi-trash"></i></button>
+              <!--button *ngIf="u.alquileres" class="btn btn-danger" (click)="doRemove(u)"><i
+                  class="pi pi-trash"></i></button-->
             </div>
           </td>
         </tr>
@@ -80,7 +72,7 @@
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">
-      <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
+      <app-admin-cliente-detail-unrouted [id]="oUserToRemove!.id"></app-admin-cliente-detail-unrouted>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
