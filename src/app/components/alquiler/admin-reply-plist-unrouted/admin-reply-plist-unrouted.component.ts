@@ -1,12 +1,13 @@
+import { AlquilerAjaxService } from './../../../service/alquiler.ajax.service.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { IAlquiler, IAlquilerPage } from 'src/app/model/model.interfaces';
-import { AdminReplyDetailUnroutedComponent } from '../admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
+import { AdminAlquilerDetailUnroutedComponent } from '../admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
+
 
 @Component({
   selector: 'app-admin-reply-plist-unrouted',
@@ -21,10 +22,10 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oReplyToRemove: IAlquiler | null = null;
+  oAlquilerToRemove: IAlquiler | null = null;
 
   constructor(
-    private replyService: ReplyAjaxService,
+    private alquilerService: AlquilerAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
@@ -35,7 +36,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.replyService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection)
+    this.alquilerService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection)
       .subscribe({
         next: (data: IAlquilerPage) => {
           this.oPage = data;
@@ -67,7 +68,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   doView(u: IAlquiler) {
-    this.ref = this.oDialogService.open(AdminReplyDetailUnroutedComponent, {
+    this.ref = this.oDialogService.open(AdminAlquilerDetailUnroutedComponent, {
       data: {
         id: u.id
       },
@@ -80,12 +81,12 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   }
 
   doRemove(u: IAlquiler) {
-    this.oReplyToRemove = u;
+    this.oAlquilerToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        if (this.oReplyToRemove) {
+        if (this.oAlquilerToRemove) {
           this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
-          this.replyService.removeOne(this.oReplyToRemove.id).subscribe({
+          this.alquilerService.removeOne(this.oAlquilerToRemove.id).subscribe({
             next: () => {
               this.getPage();
             },

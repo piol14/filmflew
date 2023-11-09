@@ -9,7 +9,7 @@ import { AdminClientePlistRoutedComponent } from './components/cliente/admin-cli
 import { AdminClienteEditRoutedComponent } from './components/cliente/admin-cliente-edit-routed/admin-cliente-edit-routed.component';
 import { AdminClienteNewRoutedComponent } from './components/cliente/admin-cliente-new-routed/admin-cliente-new-routed.component';
 import { AdminPeliculaNewRoutedComponent } from './components/pelicula/admin-pelicula-new-routed/admin-pelicula-new-routed.component';
-import { AdminReplyPlistRoutedComponent } from './components/alquiler/admin-reply-plist-routed/admin-reply-plist-routed.component';
+import { AdminAlquilerPlistRoutedComponent } from './components/alquiler/admin-alquiler-plist-routed/admin-alquiler-plist-routed.component';
 import { AdminPeliculaPlistRoutedComponent } from './components/pelicula/admin-pelicula-plist-routed/admin-pelicula-plist-routed.component';
 import { AdminAlquilerNewRoutedComponent } from './components/alquiler/admin-alquiler-new-routed/admin-alquiler-new-routed.component';
 //--
@@ -32,10 +32,10 @@ const routes: Routes = [
   { path: 'admin/pelicula/new', component: AdminPeliculaNewRoutedComponent },  
   { path: 'admin/pelicula/edit/:id', component: AdminPeliculaEditRoutedComponent },  
   //--
-  { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
-  { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },    
-  { path: 'admin/reply/new', component: AdminAlquilerNewRoutedComponent},  
-  { path: 'admin/reply/edit/:id', component: AdminAlquilerEditRoutedComponent},
+  { path: 'admin/alquiler/plist', component: AdminAlquilerPlistRoutedComponent },
+  { path: 'admin/alquiler/view/:id', component: AdminReplyViewRoutedComponent },    
+  { path: 'admin/alquiler/new', component: AdminAlquilerNewRoutedComponent},  
+  { path: 'admin/alquiler/edit/:id', component: AdminAlquilerEditRoutedComponent},
   //--
 ];
 

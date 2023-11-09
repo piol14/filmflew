@@ -26,7 +26,7 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 
 import { AdminAlquilerEditRoutedComponent } from './components/alquiler/admin-alquiler-edit-routed/admin-alquiler-edit-routed.component';
 import { AdminPeliculaNewRoutedComponent } from './components/pelicula/admin-pelicula-new-routed/admin-pelicula-new-routed.component';
-import { AdminReplyPlistRoutedComponent } from './components/alquiler/admin-reply-plist-routed/admin-reply-plist-routed.component';
+import {AdminAlquilerPlistRoutedComponent } from './components/alquiler/admin-alquiler-plist-routed/admin-alquiler-plist-routed.component';
 import { AdminPeliculaPlistUnroutedComponent } from './components/pelicula/admin-pelicula-plist-unrouted/admin-pelicula-plist-unrouted.component';
 import { AdminPeliculaDetailUnroutedComponent  } from './components/pelicula/admin-pelicula-detail-unrouted/admin-pelicula-detail-unrouted.component';
 import { AdminReplyPlistUnroutedComponent } from './components/alquiler/admin-reply-plist-unrouted/admin-reply-plist-unrouted.component';
@@ -78,7 +78,7 @@ import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admi
     AdminPeliculaSelectionUnroutedComponent,
     //--
     AdminAlquilerFormUnroutedComponent ,
-    AdminReplyPlistRoutedComponent,
+    AdminAlquilerPlistRoutedComponent,
     AdminReplyViewRoutedComponent,
     AdminAlquilerNewRoutedComponent,
     AdminAlquilerEditRoutedComponent,

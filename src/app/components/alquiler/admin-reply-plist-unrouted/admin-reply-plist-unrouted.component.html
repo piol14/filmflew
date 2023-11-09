@@ -8,41 +8,40 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-end mb-3">
-    <h6>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} replies</h6>
+    <h6>Mostrando {{oPage.numberOfElements}} de un total de {{oPage.totalElements}} alquileres</h6>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 
-
-  <div class="mb-5 ">
+  <div class="mb-5">
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
           <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('title')">Title</th>
-          <th (click)="doOrder('body')">Body</th>
-          <th (click)="doOrder('user')">User</th>
-          <th (click)="doOrder('thread')">Thread</th>
-          <th>Tools</th>
+          <th (click)="doOrder('fecha_alquiler')">Fecha de Alquiler</th>
+          <th (click)="doOrder('fecha_devolucion')">Fecha de Devolución</th>
+          <th (click)="doOrder('cliente_id')">ID de Cliente</th>
+          <th (click)="doOrder('pelicula_id')">ID de Película</th>
+          <th>Herramientas</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of oPage.content" class="align-middle">
-          <td  class="text-center"><strong>{{r.id}}</strong></td>
-          <td>{{r.title| trimming:25}}</td>
-          <td>{{r.body| trimming:50}}</td>
-          <td  class="text-center">{{r.user.id}} </td>
-          <td  class="text-center">{{r.thread.id}} </td>
+        <tr *ngFor="let alquiler of oPage.content" class="align-middle">
+          <td class="text-center"><strong>{{alquiler.id}}</strong></td>
+          <td>{{alquiler.fecha_alquiler}}</td>
+          <td>{{alquiler.fecha_devolucion}}</td>
+          <td class="text-center">{{alquiler.cliente_id.id}} </td>
+          <td class="text-center">{{alquiler.pelicula_id.id}} </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button class="btn btn-primary" [routerLink]="['/admin','reply','view',r.id]"><i
+              <button class="btn btn-primary" [routerLink]="['/admin','alquiler','ver',alquiler.id]"><i
                   class="pi pi-eye"></i></button>
-              <button class="btn btn-primary" (click)="doView(r)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="btn btn-warning" [routerLink]="['/admin','reply','edit',r.id]"><i
+              <button class="btn btn-primary" (click)="doView(alquiler)"><i class="pi pi-arrow-circle-up"></i></button>
+              <button class="btn btn-warning" [routerLink]="['/admin','alquiler','editar',alquiler.id]"><i
                   class="pi pi-pencil"></i></button>
-              <button class="btn btn-danger" (click)="doRemove(r)"><i class="pi pi-trash"></i></button>
+              <button class="btn btn-danger" (click)="doRemove(alquiler)"><i class="pi pi-trash"></i></button>
             </div>
           </td>
         </tr>
@@ -51,19 +50,18 @@
   </div>
 </div>
 
-
 <p-confirmDialog #cd [style]="{ width: '30vw' }">
   <ng-template pTemplate="header">
-    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Reply removal</h5>
+    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Eliminar Alquiler</h5>
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">
-      <app-admin-reply-detail-unrouted [id]="oReplyToRemove!.id"></app-admin-reply-detail-unrouted>
+      <app-admin-alquiler-detail-unrouted [id]="oAlquilerToRemove!.id"></app-admin-alquiler-detail-unrouted>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
-    <p>¿Are you sure to remove reply?</p>
+    <p>¿Estás seguro de que quieres eliminar este alquiler?</p>
     <button class="btn btn-primary mx-1" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Sí" (click)="cd.accept()"></button>
   </ng-template>
 </p-confirmDialog>
