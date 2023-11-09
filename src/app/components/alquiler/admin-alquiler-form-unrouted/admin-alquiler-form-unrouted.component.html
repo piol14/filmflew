@@ -1,0 +1,56 @@
+<div *ngIf="status !== null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      ERROR: {{ status!.message }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status === null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center my-3">
+      <form [formGroup]="alquilerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Fecha de Alquiler:</mat-label>
+            <input matInput formControlName="fecha_alquiler" placeholder="Fecha de Alquiler" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Fecha de Devolución:</mat-label>
+            <input matInput formControlName="fecha_devolucion" placeholder="Fecha de Devolución" required>
+          </mat-form-field>
+        </div>
+        <div formGroupName="pelicula_id">
+          <div class="form-group">
+            <mat-form-field style="margin-right: 10px;">
+              <mat-label>Película:</mat-label>
+              <input matInput formControlName="id" placeholder="ID de la película" required readonly>
+              <mat-error *ngIf="hasError('pelicula_id', 'required')">El ID de la película es requerido</mat-error>
+            </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowPeliculaSelection()">
+              <i class="pi pi-search"></i> Buscar una película
+            </button>
+            {{oAlquiler.pelicula_id.titulo}} 
+          </div>
+        </div>
+
+        <div formGroupName="cliente_id">
+          <div class="form-group">
+            <mat-form-field style="width: 100px; margin-right: 10px;">
+              <mat-label>Cliente:</mat-label>
+              <input matInput formControlName="id" placeholder="ID de Cliente" required readonly>
+            </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
+              Buscar un cliente</button>
+              {{oAlquiler.cliente_id.nombre}} 
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit">Guardar Alquiler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

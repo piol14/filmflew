@@ -1,0 +1,50 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      ERROR: {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center my-3">
+      <form [formGroup]="PeliculaForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field *ngIf="operation=='EDIT'">
+            <mat-label>ID:</mat-label>
+            <input matInput formControlName="id" placeholder="ID" required readonly>
+            <mat-hint align="end">(can't change this number)</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Title:</mat-label>
+            <input matInput formControlName="titulo" placeholder="Title" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Director:</mat-label>
+            <input matInput formControlName="director" placeholder="Director" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Duración:</mat-label>
+            <input matInput formControlName="duracion" placeholder="Duración" type="number" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Género:</mat-label>
+            <input matInput formControlName="genero" placeholder="Género" required>
+          </mat-form-field>
+        </div>
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit">Guardar Pelicula</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

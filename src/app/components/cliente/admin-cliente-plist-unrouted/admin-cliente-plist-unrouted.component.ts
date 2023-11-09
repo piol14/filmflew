@@ -21,7 +21,7 @@ export class AdminClientePlistUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oUserToRemove: ICliente | null = null;
+  oClienteToRemove: ICliente | null = null;
 
   constructor(
     private oClienteAjaxService: ClienteAjaxService,
@@ -81,18 +81,18 @@ export class AdminClientePlistUnroutedComponent implements OnInit {
   }
 
   doRemove(u: ICliente) {
-    this.oUserToRemove = u;
+    this.oClienteToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The user has been removed.", '', { duration: 1200 });
-        this.oClienteAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
+        this.oMatSnackBar.open("The client has been removed.", '', { duration: 1200 });
+        this.oClienteAjaxService.removeOne(this.oClienteToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.oPage.error = error;
             this.status = error;
-            this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 1200 });
+            this.oMatSnackBar.open("The client hasn't been removed.", "", { duration: 1200 });
           }
         });
       },

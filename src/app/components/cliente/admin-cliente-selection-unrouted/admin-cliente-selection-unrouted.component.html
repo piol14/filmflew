@@ -1,0 +1,46 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      ERROR: {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="d-flex justify-content-end mb-3">
+    <h6>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h6>
+  </div>
+  <div class="flex justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+
+  <div class="mb-5">
+    <table class="table table-bordered table-striped table-hover table-sm">
+      <thead>
+        <tr>
+          <th (click)="doOrder('id')">ID</th>
+          <th (click)="doOrder('nombre')">Nombre</th>
+          <th (click)="doOrder('dirrecion')">Dirección</th>
+          <th (click)="doOrder('telefono')">Teléfono</th>
+          <th (click)="doOrder('rol')">Rol</th>
+          <th>Tools</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of oPage.content" class="align-middle">
+          <td class="text-end"><strong>{{cliente.id}}</strong></td>
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.dirrecion}}</td>
+          <td>{{cliente.telefono}}</td>
+          <td>{{cliente.rol ? 'Admin' : 'User'}}</td>
+          <td class="text-center">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <button class="btn btn-primary" (click)="onSelectUser(cliente)"><i class="pi pi-plus-circle"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<!-- Esta sección maneja errores -->
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      ERROR: {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<!-- Esta sección muestra la lista de películas si no hay errores -->
+<div *ngIf="status==null">
+  <div class="d-flex justify-content-end mb-3">
+    <h6>Mostrando {{oPage.numberOfElements}} de un total de {{oPage.totalElements}} películas.</h6>
+  </div>
+  <div class="flex justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+
+  <!-- Aquí se muestra la tabla de películas -->
+  <div class="mb-5 ">
+    <table class="table table-bordered table-striped table-hover table-sm">
+      <thead>
+        <tr>
+          <th (click)="doOrder('id')">ID</th>
+          <th (click)="doOrder('titulo')">Título</th>
+          <th (click)="doOrder('director')">Director</th>
+          <th (click)="doOrder('duracion')">Duración</th>
+          <th (click)="doOrder('genero')">Género</th>
+          <th>Herramientas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Se itera sobre cada película para mostrar sus detalles -->
+        <tr *ngFor="let pelicula of oPage.content" class="align-middle">
+          <td class="text-end"><strong>{{pelicula.id}}</strong></td>
+          <td>{{pelicula.titulo}}</td>
+          <td>{{pelicula.director}}</td>
+          <td>{{pelicula.duracion}}</td>
+          <td>{{pelicula.genero}}</td>
+          <td class="text-center">
+            <!-- Botones para ver, editar y eliminar la película -->
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <button class="btn btn-primary" [routerLink]="['/admin','pelicula','view',pelicula.id]"><i
+                  class="pi pi-eye"></i></button>
+              <button class="btn btn-warning" [routerLink]="['/admin','pelicula','edit',pelicula.id]"><i
+                  class="pi pi-pencil"></i></button>
+              <button class="btn btn-danger" (click)="doRemove(pelicula)"><i class="pi pi-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- El siguiente código define un diálogo de confirmación para eliminar una película -->
+<p-confirmDialog #cd [style]="{ width: '30vw' }">
+  <ng-template pTemplate="header">
+    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Eliminar Película</h5>
+  </ng-template>
+  <ng-template pTemplate="message">
+    <div class="container d-flex align-items-center justify-content-center">
+      <app-admin-pelicula-detail-unrouted [id]="oPeliculaToRemove!.id"></app-admin-pelicula-detail-unrouted>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p>¿Estás seguro de que quieres eliminar la película?</p>
+    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Sí" (click)="cd.accept()"></button>
+  </ng-template>
+</p-confirmDialog>

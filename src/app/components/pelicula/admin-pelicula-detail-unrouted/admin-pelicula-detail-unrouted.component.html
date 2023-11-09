@@ -1,0 +1,38 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+      <div class="alert alert-danger" role="alert">
+          ERROR: {{status!.message}}
+      </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <table class="table table-striped table-hover">
+      <tbody>
+          <tr>
+              <th>Property</th>
+              <th>Value</th>
+          </tr>
+          <tr>
+              <td>id</td>
+              <td>{{oPelicula.id}}</td>
+          </tr>
+          <tr>
+              <td>Titulo</td>
+              <td>{{oPelicula.titulo}}</td>
+          </tr>
+          <tr>
+              <td>Director</td>
+              <td>{{oPelicula.director}}</td>
+          </tr>
+          <tr>
+              <td>Genero</td>
+              <td>{{oPelicula.genero}}</td>
+          </tr>
+          <tr>
+            <td>Duracion</td>
+            <td>{{oPelicula.duracion}}</td>
+        </tr>
+      </tbody>
+  </table>
+</div>

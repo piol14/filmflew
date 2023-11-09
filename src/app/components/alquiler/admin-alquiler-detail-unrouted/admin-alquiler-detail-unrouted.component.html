@@ -1,0 +1,34 @@
+<div *ngIf="status != null">
+    <div class="d-flex justify-content-center my-3">
+        <div class="alert alert-danger" role="alert">
+            ERROR: {{ status!.message }}
+        </div>
+    </div>
+</div>
+
+<div *ngIf="status == null">
+    <table class="table table-striped table-hover">
+        <tbody>
+            <tr>
+                <th>Propiedad</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Fecha de Alquiler</td>
+                <td>{{ oAlquiler.fecha_alquiler }}</td>
+            </tr>
+            <tr>
+                <td>Fecha de Devolución</td>
+                <td>{{ oAlquiler.fecha_devolucion }}</td>
+            </tr>
+            <tr>
+                <td>Cliente</td>
+                <td><a [routerLink]="['/admin', 'cliente', 'view', oAlquiler.cliente_id.id]">{{ oAlquiler.cliente_id.nombre }}</a></td>
+            </tr>
+            <tr>
+                <td>Película</td>
+                <td><a [routerLink]="['/admin', 'pelicula', 'view', oAlquiler.pelicula_id.id]">{{ oAlquiler.pelicula_id.titulo }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

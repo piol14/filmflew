@@ -57,6 +57,7 @@ export interface IClientePage extends IPage<ICliente> {
 
 export interface IPelicula extends IEntity {
     director: string,
+
     duracion: number,
     genero: string, 
     titulo: string

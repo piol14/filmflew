@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-cliente-edit-routed',
-  templateUrl: './admin-cliente-edit-routed.component.html',
-  styleUrls: ['./admin-cliente-edit-routed.component.css']
+  templateUrl: './admin-alquiler-edit-routed.component.html',
+  styleUrls: ['./admin-alquiler-edit-routed.component.css']
 })
-export class AdminClienteEditRoutedComponent implements OnInit {
+export class AdminAlquilerEditRoutedComponent implements OnInit{
 
   id: number = 1;
 
@@ -18,5 +17,4 @@ export class AdminClienteEditRoutedComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

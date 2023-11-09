@@ -4,37 +4,38 @@ import { RouterModule, Routes } from '@angular/router';
 //--
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 //--
-import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
-import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
-import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
-import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
-import { AdminThreadNewRoutedComponent } from './components/thread/admin-thread-new-routed/admin-thread-new-routed.component';
-import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-plist-routed/admin-reply-plist-routed.component';
-import { AdminThreadPlistRoutedComponent } from './components/thread/admin-thread-plist-routed/admin-thread-plist-routed.component';
-import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new-routed/admin-reply-new-routed.component';
+//import { AdminClienteViewRoutedComponent } from './components/cliente/admin-cliente-view-routed/admin-cliente-view-routed.component';
+import { AdminClientePlistRoutedComponent } from './components/cliente/admin-cliente-plist-routed/admin-cliente-plist-routed.component';
+import { AdminClienteEditRoutedComponent } from './components/cliente/admin-cliente-edit-routed/admin-cliente-edit-routed.component';
+import { AdminClienteNewRoutedComponent } from './components/cliente/admin-cliente-new-routed/admin-cliente-new-routed.component';
+import { AdminPeliculaNewRoutedComponent } from './components/pelicula/admin-pelicula-new-routed/admin-pelicula-new-routed.component';
+import { AdminReplyPlistRoutedComponent } from './components/alquiler/admin-reply-plist-routed/admin-reply-plist-routed.component';
+import { AdminPeliculaPlistRoutedComponent } from './components/pelicula/admin-pelicula-plist-routed/admin-pelicula-plist-routed.component';
+import { AdminAlquilerNewRoutedComponent } from './components/alquiler/admin-alquiler-new-routed/admin-alquiler-new-routed.component';
 //--
-import { AdminReplyEditRoutedComponent } from './components/reply/admin-reply-edit-routed/admin-reply-edit-routed.component';
-import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread-edit-routed/admin-thread-edit-routed.component';
-import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
-import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
+import { AdminAlquilerEditRoutedComponent } from './components/alquiler/admin-alquiler-edit-routed/admin-alquiler-edit-routed.component';
+import { AdminPeliculaEditRoutedComponent } from './components/pelicula/admin-pelicula-edit-routed/admin-pelicula-edit-routed.component';
+import { AdminPeliculaViewRoutedComponent } from './components/pelicula/admin-pelicula-view-routed/admin-pelicula-view-routed.component';
+import { AdminReplyViewRoutedComponent } from './components/alquiler/admin-reply-view-routed/admin-reply-view-routed.component';
+import { AdminClienteViewRoutedComponent } from './components/cliente/admin-cliente-view-routed/admin-cliente-view-routed.component';
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
   //--
-  { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
-  { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },    
-  { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
-  { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
+  { path: 'admin/cliente/plist', component: AdminClientePlistRoutedComponent },
+  { path: 'admin/cliente/view/:id', component: AdminClienteViewRoutedComponent },    
+  { path: 'admin/cliente/new', component: AdminClienteNewRoutedComponent },
+  { path: 'admin/cliente/edit/:id', component: AdminClienteEditRoutedComponent },
   //--  
-  { path: 'admin/thread/plist', component: AdminThreadPlistRoutedComponent },
-  { path: 'admin/thread/view/:id', component: AdminThreadViewRoutedComponent },    
-  { path: 'admin/thread/new', component: AdminThreadNewRoutedComponent },  
-  { path: 'admin/thread/edit/:id', component: AdminThreadEditRoutedComponent },  
+  { path: 'admin/pelicula/plist', component: AdminPeliculaPlistRoutedComponent},
+  { path: 'admin/pelicula/view/:id', component: AdminPeliculaViewRoutedComponent },    
+  { path: 'admin/pelicula/new', component: AdminPeliculaNewRoutedComponent },  
+  { path: 'admin/pelicula/edit/:id', component: AdminPeliculaEditRoutedComponent },  
   //--
   { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
   { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },    
-  { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent},  
-  { path: 'admin/reply/edit/:id', component: AdminReplyEditRoutedComponent },
+  { path: 'admin/reply/new', component: AdminAlquilerNewRoutedComponent},  
+  { path: 'admin/reply/edit/:id', component: AdminAlquilerEditRoutedComponent},
   //--
 ];
 
