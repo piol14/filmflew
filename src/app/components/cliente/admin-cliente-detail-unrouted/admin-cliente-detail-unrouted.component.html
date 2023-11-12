@@ -10,8 +10,8 @@
     <table class="table table-striped table-hover">
         <tbody>
             <tr>
-                <th>Property</th>
-                <th>Value</th>
+                <th>Propiedad</th>
+                <th>Valor</th>
             </tr>
             <tr>
                 <td>id</td>
@@ -34,8 +34,8 @@
             <tr>
                 <td>rol</td>
                 <td>
-                    <span *ngIf="oCliente.role==true">Admin</span>
-                    <span *ngIf="oCliente.role==false">User</span>
+                    <span *ngIf="oCliente.rol">Admin</span>
+                    <span *ngIf="oCliente.rol==false">User</span>
                 </td>
             </tr>
         </tbody>

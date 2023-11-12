@@ -84,7 +84,7 @@ export class AdminPeliculaPlistUnroutedComponent implements OnInit {
       message: '¿Estás seguro de que quieres eliminar la película?',
       accept: () => {
         this.oMatSnackBar.open("La película ha sido eliminada.", '', { duration: 1200 });
-        this.oHttpClient.delete("http://localhost:8083/pelicula/" + this.oPeliculaToRemove?.id).subscribe({
+        this.peliculaAjaxService.removeOne(this.oPeliculaToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },

@@ -29,9 +29,9 @@ import { AdminPeliculaNewRoutedComponent } from './components/pelicula/admin-pel
 import {AdminAlquilerPlistRoutedComponent } from './components/alquiler/admin-alquiler-plist-routed/admin-alquiler-plist-routed.component';
 import { AdminPeliculaPlistUnroutedComponent } from './components/pelicula/admin-pelicula-plist-unrouted/admin-pelicula-plist-unrouted.component';
 import { AdminPeliculaDetailUnroutedComponent  } from './components/pelicula/admin-pelicula-detail-unrouted/admin-pelicula-detail-unrouted.component';
-import { AdminReplyPlistUnroutedComponent } from './components/alquiler/admin-reply-plist-unrouted/admin-reply-plist-unrouted.component';
+import { AdminAlquilerPlistUnroutedComponent } from './components/alquiler/admin-alquiler-plist-unrouted/admin-alquiler-plist-unrouted.component';
 import { AdminPeliculaPlistRoutedComponent  } from './components/pelicula/admin-pelicula-plist-routed/admin-pelicula-plist-routed.component';
-import { AdminReplyViewRoutedComponent } from './components/alquiler/admin-reply-view-routed/admin-reply-view-routed.component';
+
 import { AdminAlquilerNewRoutedComponent } from './components/alquiler/admin-alquiler-new-routed/admin-alquiler-new-routed.component';
 import { AdminAlquilerFormUnroutedComponent } from './components/alquiler/admin-alquiler-form-unrouted/admin-alquiler-form-unrouted.component';
 import { AdminPeliculaViewRoutedComponent } from './components/pelicula/admin-pelicula-view-routed/admin-pelicula-view-routed.component';
@@ -51,6 +51,7 @@ import { AdminClienteViewRoutedComponent } from './components/cliente/admin-clie
 import { AdminPeliculaFormUnroutedComponent } from './components/pelicula/admin-pelicula-form-unrouted/admin-pelicula-form-unrouted.component';
 import { AdminPeliculaSelectionUnroutedComponent } from './components/pelicula/admin-pelicula-selection-unrouted/admin-pelicula-selection-unrouted.component';
 import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
+import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-alquiler-view-routed/admin-alquiler-view-routed.component';
 //--
 @NgModule({
   declarations: [
@@ -79,10 +80,10 @@ import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admi
     //--
     AdminAlquilerFormUnroutedComponent ,
     AdminAlquilerPlistRoutedComponent,
-    AdminReplyViewRoutedComponent,
+    AdminAlquilerViewRoutedComponent,
     AdminAlquilerNewRoutedComponent,
     AdminAlquilerEditRoutedComponent,
-    AdminReplyPlistUnroutedComponent,
+    AdminAlquilerPlistUnroutedComponent,
     AdminAlquilerDetailUnroutedComponent,
     
    
@@ -115,7 +116,7 @@ import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admi
     ConfirmationService,
     MatSnackBar,
     ClienteAjaxService,
-    AlquilerAjaxService,
+    PeliculaAjaxService,
     AlquilerAjaxService
   ],
   bootstrap: [AppComponent]

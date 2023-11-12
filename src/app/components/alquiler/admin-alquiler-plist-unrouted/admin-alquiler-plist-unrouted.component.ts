@@ -1,21 +1,22 @@
-import { AlquilerAjaxService } from './../../../service/alquiler.ajax.service.service';
+import { AlquilerAjaxService } from '../../../service/alquiler.ajax.service.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IAlquiler, IAlquilerPage } from 'src/app/model/model.interfaces';
+
 import { AdminAlquilerDetailUnroutedComponent } from '../admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IAlquiler, IAlquilerPage } from '../../../model/model.interfaces';
 
 
 @Component({
-  selector: 'app-admin-reply-plist-unrouted',
-  templateUrl: './admin-reply-plist-unrouted.component.html',
-  styleUrls: ['./admin-reply-plist-unrouted.component.css']
+  selector: 'app-admin-alquiler-plist-unrouted',
+  templateUrl: './admin-alquiler-plist-unrouted.component.html',
+  styleUrls: ['./admin-alquiler-plist-unrouted.component.css']
 })
 
-export class AdminReplyPlistUnroutedComponent implements OnInit {
+export class AdminAlquilerPlistUnroutedComponent implements OnInit {
 
   oPage: any = [];
   orderField: string = "id";

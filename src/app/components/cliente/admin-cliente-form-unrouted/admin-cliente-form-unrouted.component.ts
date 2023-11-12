@@ -36,7 +36,7 @@ export class AdminClienteFormUnroutedComponent implements OnInit {
       direccion: [oCliente.direccion, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       telefono: [oCliente.telefono, Validators.maxLength(12)],
      
-      role: [oCliente.role, Validators.required]
+      rol: [oCliente.rol, Validators.required]
     });
   }
 
@@ -85,7 +85,7 @@ export class AdminClienteFormUnroutedComponent implements OnInit {
             this.initializeForm(this.oCliente);
             // avisar al usuario que se ha actualizado correctamente
             this.oMatSnackBar.open("User has been updated.", '', { duration: 1200 });
-            this.oRouter.navigate(['/admin', '', 'view', this.oCliente.id]);
+            this.oRouter.navigate(['/admin', 'cliente', 'view', this.oCliente.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

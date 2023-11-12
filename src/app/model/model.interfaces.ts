@@ -48,7 +48,7 @@ export interface ICliente extends IEntity {
     direccion: string,
     telefono: string,
    
-    role: boolean,
+    rol: boolean,
    
 }
 

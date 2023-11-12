@@ -72,7 +72,7 @@ export class AdminPeliculaFormUnroutedComponent implements OnInit {
             this.oPelicula = {} as IPelicula;
             this.initializeForm(this.oPelicula); //el id se genera en el servidor
             this.oMatSnackBar.open('Pelicula has been created.', '', { duration: 1200 });
-            this.router.navigate(['/admin', 'Pelicula', 'view', data]);
+            this.router.navigate(['/admin', 'pelicula', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -85,7 +85,7 @@ export class AdminPeliculaFormUnroutedComponent implements OnInit {
             this.oPelicula = data;
             this.initializeForm(this.oPelicula);
             this.oMatSnackBar.open('Pelicula has been updated.', '', { duration: 1200 });
-            this.router.navigate(['/admin', 'Pelicula', 'view', this.oPelicula.id]);
+            this.router.navigate(['/admin', 'pelicula', 'view', this.oPelicula.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

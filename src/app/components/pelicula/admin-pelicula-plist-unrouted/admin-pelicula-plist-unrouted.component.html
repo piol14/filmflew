@@ -43,6 +43,7 @@
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <button class="btn btn-primary" [routerLink]="['/admin','pelicula','view',pelicula.id]"><i
                   class="pi pi-eye"></i></button>
+                  <button class="btn btn-primary" (click)="doView(pelicula)"><i class="pi pi-arrow-circle-up"></i></button>
               <button class="btn btn-warning" [routerLink]="['/admin','pelicula','edit',pelicula.id]"><i
                   class="pi pi-pencil"></i></button>
               <button class="btn btn-danger" (click)="doRemove(pelicula)"><i class="pi pi-trash"></i></button>

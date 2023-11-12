@@ -16,8 +16,8 @@ import { AdminAlquilerNewRoutedComponent } from './components/alquiler/admin-alq
 import { AdminAlquilerEditRoutedComponent } from './components/alquiler/admin-alquiler-edit-routed/admin-alquiler-edit-routed.component';
 import { AdminPeliculaEditRoutedComponent } from './components/pelicula/admin-pelicula-edit-routed/admin-pelicula-edit-routed.component';
 import { AdminPeliculaViewRoutedComponent } from './components/pelicula/admin-pelicula-view-routed/admin-pelicula-view-routed.component';
-import { AdminReplyViewRoutedComponent } from './components/alquiler/admin-reply-view-routed/admin-reply-view-routed.component';
 import { AdminClienteViewRoutedComponent } from './components/cliente/admin-cliente-view-routed/admin-cliente-view-routed.component';
+import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-alquiler-view-routed/admin-alquiler-view-routed.component';
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'admin/pelicula/edit/:id', component: AdminPeliculaEditRoutedComponent },  
   //--
   { path: 'admin/alquiler/plist', component: AdminAlquilerPlistRoutedComponent },
-  { path: 'admin/alquiler/view/:id', component: AdminReplyViewRoutedComponent },    
+  { path: 'admin/alquiler/view/:id', component: AdminAlquilerViewRoutedComponent },    
   { path: 'admin/alquiler/new', component: AdminAlquilerNewRoutedComponent},  
   { path: 'admin/alquiler/edit/:id', component: AdminAlquilerEditRoutedComponent},
   //--

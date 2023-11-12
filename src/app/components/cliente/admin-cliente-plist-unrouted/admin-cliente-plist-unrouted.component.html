@@ -49,8 +49,8 @@
               <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
               <button class="btn btn-warning" [routerLink]="['/admin','cliente','edit',u.id]"><i
                   class="pi pi-pencil"></i></button>
-              <!--button *ngIf="u.alquileres" class="btn btn-danger" (click)="doRemove(u)"><i
-                  class="pi pi-trash"></i></button-->
+              <button *ngIf="u.alquileres" class="btn btn-danger" (click)="doRemove(u)"><i
+                  class="pi pi-trash"></i></button>
             </div>
           </td>
         </tr>

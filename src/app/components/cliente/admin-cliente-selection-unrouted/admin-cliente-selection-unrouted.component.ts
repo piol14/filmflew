@@ -31,7 +31,7 @@ export class AdminClienteSelectionUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IClientePage>("http://localhost:8083/user" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oHttpClient.get<IClientePage>("http://localhost:8083/cliente" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
       next: (data: IClientePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

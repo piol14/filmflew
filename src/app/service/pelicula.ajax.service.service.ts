@@ -22,12 +22,12 @@ export class PeliculaAjaxService {
         return this.oHttpClient.put<IPelicula>(this.sUrl, thread);
     }
 
-    removeOne(id: number): Observable<number> {
+    removeOne(id: number | undefined): Observable<number> {
         return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
     }
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IPeliculaPage> {
         if (!size) size = 10;
-        if (!page) page = 0;
+        if (!page) page = 1;
         return this.oHttpClient.get<IPeliculaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
 }
