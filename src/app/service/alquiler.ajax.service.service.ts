@@ -27,7 +27,7 @@ export class AlquilerAjaxService {
     }
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IAlquilerPage> {
         if (!size) size = 10;
-        if (!page) page = 1;
+        if (!page) page = 0;
         return this.oHttpClient.get<IAlquilerPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
       

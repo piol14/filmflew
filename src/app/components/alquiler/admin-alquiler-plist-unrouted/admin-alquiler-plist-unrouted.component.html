@@ -32,14 +32,14 @@
           <td class="text-center"><strong>{{alquiler.id}}</strong></td>
           <td>{{alquiler.fecha_alquiler}}</td>
           <td>{{alquiler.fecha_devolucion}}</td>
-          <td class="text-center">{{alquiler.cliente_id.id}} </td>
-          <td class="text-center">{{alquiler.pelicula_id.id}} </td>
+          <td class="text-center">{{alquiler.cliente.nombre}} </td>
+          <td class="text-center">{{alquiler.pelicula.titulo}} </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button class="btn btn-primary" [routerLink]="['/admin','alquiler','ver',alquiler.id]"><i
+              <button class="btn btn-primary" [routerLink]="['/admin','alquiler','view',alquiler.id]"><i
                   class="pi pi-eye"></i></button>
               <button class="btn btn-primary" (click)="doView(alquiler)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="btn btn-warning" [routerLink]="['/admin','alquiler','editar',alquiler.id]"><i
+              <button class="btn btn-warning" [routerLink]="['/admin','alquiler','edit',alquiler.id]"><i
                   class="pi pi-pencil"></i></button>
               <button class="btn btn-danger" (click)="doRemove(alquiler)"><i class="pi pi-trash"></i></button>
             </div>

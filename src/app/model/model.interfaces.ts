@@ -69,8 +69,8 @@ export interface IPeliculaPage extends IPage<IPelicula> {
 export interface IAlquiler extends IEntity {
     fecha_alquiler: string,
     fecha_devolucion: string,
-    cliente_id: ICliente,
-    pelicula_id: IPelicula
+    cliente: ICliente,
+    pelicula: IPelicula
 }
 
 export interface IAlquilerPage extends IPage<IAlquiler> {

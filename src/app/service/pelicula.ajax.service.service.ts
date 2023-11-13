@@ -27,7 +27,7 @@ export class PeliculaAjaxService {
     }
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IPeliculaPage> {
         if (!size) size = 10;
-        if (!page) page = 1;
+        if (!page) page = 0;
         return this.oHttpClient.get<IPeliculaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
 }

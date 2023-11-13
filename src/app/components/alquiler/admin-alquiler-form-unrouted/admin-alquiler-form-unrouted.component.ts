@@ -19,7 +19,7 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; // new or edit
 
   alquilerForm!: FormGroup;
-  oAlquiler: IAlquiler = {cliente_id: {}, pelicula_id: {}} as IAlquiler;
+  oAlquiler: IAlquiler = {cliente: {}, pelicula: {}} as IAlquiler;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -40,10 +40,10 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
       fecha_alquiler: [alquiler.fecha_alquiler, [Validators.required]],
       fecha_devolucion: [alquiler.fecha_devolucion, [Validators.required]],
       cliente_id: this.formBuilder.group({
-        id: [alquiler.cliente_id?.id]  // Check if cliente_id is defined before accessing id
+        id: [alquiler.cliente?.id]  // Check if cliente_id is defined before accessing id
       }),
       pelicula_id: this.formBuilder.group({
-        id: [alquiler.pelicula_id?.id]  // Check if pelicula_id is defined before accessing id
+        id: [alquiler.pelicula?.id]  // Check if pelicula_id is defined before accessing id
       }),
     });
   }
@@ -114,7 +114,7 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oUser: ICliente) => {
       if (oUser) {
-        this.oAlquiler.cliente_id = oUser;
+        this.oAlquiler.cliente = oUser;
         this.alquilerForm.controls['cliente_id'].patchValue({ id: oUser.id });
       }
     });
@@ -131,7 +131,7 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oPelicula: IPelicula) => {
       if (oPelicula) {
-        this.oAlquiler.pelicula_id = oPelicula;
+        this.oAlquiler.pelicula = oPelicula;
         this.alquilerForm.controls['pelicula_id'].patchValue({ id: oPelicula.id });
       }
     });

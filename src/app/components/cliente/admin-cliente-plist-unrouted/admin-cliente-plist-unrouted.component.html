@@ -22,7 +22,7 @@
         <tr>
           <th (click)="doOrder('id')">ID</th>
           <th (click)="doOrder('nombre')">Nombre</th>
-          <th (click)="doOrder('direccion')">dirrecion</th>
+          <th (click)="doOrder('direccion')">Direccion</th>
           <th (click)="doOrder('telefono')">telefono</th>
           <th (click)="doOrder('rol')">Rol</th>
           <th>Alquileres</th>
@@ -34,7 +34,7 @@
         <tr *ngFor="let u of oPage.content" class="align-middle">
           <td class="text-end"><strong>{{u.id}}</strong></td>
           <td>{{u.nombre}}</td>
-          <td>{{u.dirrecion}}</td>
+          <td>{{u.direccion}}</td>
           <td>{{u.telefono}}</td>
           
           <td class="text-center">
