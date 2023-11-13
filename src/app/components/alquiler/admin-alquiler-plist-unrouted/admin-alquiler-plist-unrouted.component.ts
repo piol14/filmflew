@@ -80,7 +80,7 @@ export class AdminAlquilerPlistUnroutedComponent implements OnInit {
       maximizable: false
     });
   }
-
+ 
   doRemove(u: IAlquiler) {
     this.oAlquilerToRemove = u;
     this.oCconfirmationService.confirm({

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { ICliente, IClientePage } from 'src/app/model/model.interfaces';
+import { IAlquiler, ICliente, IClientePage } from 'src/app/model/model.interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClienteAjaxService } from 'src/app/service/cliente.ajax.service.service';
 import { AdminClienteDetailUnroutedComponent } from '../admin-cliente-detail-unrouted/admin-cliente-detail-unrouted.component';
@@ -79,7 +79,9 @@ export class AdminClientePlistUnroutedComponent implements OnInit {
       maximizable: false
     });
   }
-
+  obtenerAlquileres(cliente: ICliente): IAlquiler[] {
+    return cliente.alquileres;
+  }
   doRemove(u: ICliente) {
     this.oClienteToRemove = u;
     this.oCconfirmationService.confirm({

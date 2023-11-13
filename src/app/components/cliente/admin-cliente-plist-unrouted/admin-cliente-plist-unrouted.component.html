@@ -36,12 +36,14 @@
           <td>{{u.nombre}}</td>
           <td>{{u.direccion}}</td>
           <td>{{u.telefono}}</td>
-          
+         
           <td class="text-center">
             <span *ngIf="u.rol==true">Admin</span>
             <span *ngIf="u.rol==false">User</span>
           </td>
-          
+          <td *ngFor="let alquiler of obtenerAlquileres(u)">
+            {{ alquiler.id }} 
+          </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <button class="btn btn-primary" [routerLink]="['/admin','cliente','view',u.id]"><i
