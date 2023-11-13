@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IAlquiler, IPelicula, ICliente, formOperation } from 'src/app/model/model.interfaces';
-import { AdminClienteSelectionUnroutedComponent } from '../../cliente/admin-cliente-selection-unrouted/admin-cliente-selection-unrouted.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AdminClienteSelectionUnroutedComponent } from '../../cliente/admin-cliente-selection-unrouted/admin-cliente-selection-unrouted.component';
 import { AdminPeliculaSelectionUnroutedComponent } from '../../pelicula/admin-pelicula-selection-unrouted/admin-pelicula-selection-unrouted.component';
 import { AlquilerAjaxService } from 'src/app/service/alquiler.ajax.service.service';
 
@@ -15,7 +15,6 @@ import { AlquilerAjaxService } from 'src/app/service/alquiler.ajax.service.servi
   styleUrls: ['./admin-alquiler-form-unrouted.component.css']
 })
 export class AdminAlquilerFormUnroutedComponent implements OnInit {
-
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; // new or edit
 
@@ -41,16 +40,16 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
       fecha_alquiler: [alquiler.fecha_alquiler, [Validators.required]],
       fecha_devolucion: [alquiler.fecha_devolucion, [Validators.required]],
       cliente_id: this.formBuilder.group({
-        id: [alquiler.cliente_id.id]
+        id: [alquiler.cliente_id?.id]  // Check if cliente_id is defined before accessing id
       }),
       pelicula_id: this.formBuilder.group({
-        id: [alquiler.pelicula_id.id]
+        id: [alquiler.pelicula_id?.id]  // Check if pelicula_id is defined before accessing id
       }),
     });
   }
 
   ngOnInit() {
-    if (this.operation == 'EDIT') {
+    if (this.operation === 'EDIT') {
       this.alquilerService.getOne(this.id).subscribe({
         next: (data: IAlquiler) => {
           this.oAlquiler = data;
@@ -67,12 +66,14 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
   }
 
   public hasError = (controlName: string, errorName: string) => {
-    return this.alquilerForm.controls[controlName].hasError(errorName);
+    const control = this.alquilerForm.controls[controlName];
+    return control ? control.hasError(errorName) : false;
   }
+  
 
   onSubmit() {
     if (this.alquilerForm.valid) {
-      if (this.operation == 'NEW') {
+      if (this.operation === 'NEW') {
         this.alquilerService.createAlquiler(this.alquilerForm.value).subscribe({
           next: (data: IAlquiler) => {
             this.oAlquiler = data;
