@@ -23,11 +23,11 @@
             </tr>
             <tr>
                 <td>Cliente</td>
-                <td><a [routerLink]="['/admin', 'cliente', 'view', oAlquiler.cliente.id]">{{ oAlquiler.cliente.nombre }}</a></td>
+                <td><a [routerLink]="['/admin', 'cliente', 'view', oAlquiler.cliente?.id]">{{ oAlquiler.cliente?.nombre }}</a></td>
             </tr>
             <tr>
                 <td>Película</td>
-                <td><a [routerLink]="['/admin', 'pelicula', 'view', oAlquiler.pelicula.id]">{{ oAlquiler.pelicula.titulo }}</a></td>
+                <td><a [routerLink]="['/admin', 'pelicula', 'view', oAlquiler.pelicula?.id]">{{ oAlquiler.pelicula?.titulo }}</a></td>
             </tr>
         </tbody>
     </table>

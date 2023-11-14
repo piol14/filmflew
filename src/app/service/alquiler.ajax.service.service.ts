@@ -14,12 +14,12 @@ export class AlquilerAjaxService {
         return this.oHttpClient.get<IAlquiler>(this.sUrl + "/" + id);
     }
 
-    createAlquiler(reply: IAlquiler): Observable<IAlquiler> {
-        return this.oHttpClient.post<IAlquiler>(this.sUrl, reply);
+    createAlquiler(alquiler: IAlquiler): Observable<IAlquiler> {
+        return this.oHttpClient.post<IAlquiler>(this.sUrl, alquiler);
     }
 
-    updateAlquiler(reply: IAlquiler): Observable<IAlquiler> {
-        return this.oHttpClient.put<IAlquiler>(this.sUrl, reply);
+    updateAlquiler(alquiler: IAlquiler): Observable<IAlquiler> {
+        return this.oHttpClient.put<IAlquiler>(this.sUrl, alquiler);
     }
 
     removeOne(id: number): Observable<number> {

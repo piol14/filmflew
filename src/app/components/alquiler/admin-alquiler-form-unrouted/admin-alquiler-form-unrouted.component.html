@@ -22,7 +22,7 @@
             <input matInput formControlName="fecha_devolucion" placeholder="Fecha de Devolución" required>
           </mat-form-field>
         </div>
-        <div formGroupName="pelicula_id">
+        <div formGroupName="pelicula">
           <div class="form-group">
             <mat-form-field style="margin-right: 10px;">
               <mat-label>Película:</mat-label>
@@ -32,11 +32,11 @@
             <button class="btn btn-primary" type="button" (click)="onShowPeliculaSelection()">
               <i class="pi pi-search"></i> Buscar una película
             </button>
-            {{oAlquiler.pelicula.titulo }} <!-- Display the object for debugging -->
+           
           </div>
         </div>
 
-        <div formGroupName="cliente_id">
+        <div formGroupName="cliente">
           <div class="form-group">
             <mat-form-field style="width: 100px; margin-right: 10px;">
               <mat-label>Cliente:</mat-label>
@@ -44,7 +44,7 @@
             </mat-form-field>
             <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
               Buscar un cliente</button>
-              {{oAlquiler.cliente.nombre }} <!-- Display the object for debugging -->
+             
           </div>
         </div>
         <div class="text-center mt-5">

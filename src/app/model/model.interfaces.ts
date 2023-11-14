@@ -49,7 +49,7 @@ export interface ICliente extends IEntity {
     telefono: string,
    
     rol: boolean,
-   alquileres: IAlquiler []
+   alquileres: number
 }
 
 export interface IClientePage extends IPage<ICliente> {

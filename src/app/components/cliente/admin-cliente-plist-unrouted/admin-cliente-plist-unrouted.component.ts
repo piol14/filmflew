@@ -79,9 +79,7 @@ export class AdminClientePlistUnroutedComponent implements OnInit {
       maximizable: false
     });
   }
-  obtenerAlquileres(cliente: ICliente): IAlquiler[] {
-    return cliente.alquileres;
-  }
+
   doRemove(u: ICliente) {
     this.oClienteToRemove = u;
     this.oCconfirmationService.confirm({

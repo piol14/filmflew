@@ -1,43 +1,51 @@
-import { AlquilerAjaxService } from '../../../service/alquiler.ajax.service.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 
 import { AdminAlquilerDetailUnroutedComponent } from '../admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IAlquiler, IAlquilerPage } from '../../../model/model.interfaces';
-
+import { IAlquiler, IAlquilerPage, ICliente, IPelicula } from '../../../model/model.interfaces';
+import { ClienteAjaxService } from 'src/app/service/cliente.ajax.service.service';
+import { PeliculaAjaxService } from 'src/app/service/pelicula.ajax.service.service';
+import { AlquilerAjaxService } from '../../../service/alquiler.ajax.service.service';
 
 @Component({
   selector: 'app-admin-alquiler-plist-unrouted',
   templateUrl: './admin-alquiler-plist-unrouted.component.html',
   styleUrls: ['./admin-alquiler-plist-unrouted.component.css']
 })
-
 export class AdminAlquilerPlistUnroutedComponent implements OnInit {
-
   oPage: any = [];
-  orderField: string = "id";
-  orderDirection: string = "asc";
+  orderField: string = 'id';
+  orderDirection: string = 'asc';
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oAlquilerToRemove: IAlquiler | null = null;
+  @Input() cliente_id: number = 0; // filter by user
+  @Input() pelicula_id: number = 0; // filter by thread
+
+  oCliente: ICliente | null = null; // data of user if id_user is set for filter
+  oPelicula: IPelicula | null = null; // data of thread if id_thread is set for filter
 
   constructor(
     private alquilerService: AlquilerAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
-  ) { }
+    private oMatSnackBar: MatSnackBar,
+    private oClienteAjaxService: ClienteAjaxService,
+    private oPeliculaAjaxService: PeliculaAjaxService,
+    private oAlquilerAjaxService: AlquilerAjaxService
+  ) {}
 
   ngOnInit() {
     this.getPage();
   }
 
   getPage(): void {
-    this.alquilerService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection)
+    this.alquilerService
+      .getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection)
       .subscribe({
         next: (data: IAlquilerPage) => {
           this.oPage = data;
@@ -58,10 +66,10 @@ export class AdminAlquilerPlistUnroutedComponent implements OnInit {
 
   doOrder(fieldorder: string) {
     this.orderField = fieldorder;
-    if (this.orderDirection == "asc") {
-      this.orderDirection = "desc";
+    if (this.orderDirection == 'asc') {
+      this.orderDirection = 'desc';
     } else {
-      this.orderDirection = "asc";
+      this.orderDirection = 'asc';
     }
     this.getPage();
   }
@@ -80,26 +88,48 @@ export class AdminAlquilerPlistUnroutedComponent implements OnInit {
       maximizable: false
     });
   }
- 
+
+  getCliente(): void {
+    this.oClienteAjaxService.getOne(this.cliente_id).subscribe({
+      next: (data: ICliente) => {
+        this.oCliente = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  }
+
+  getThread(): void {
+    this.oPeliculaAjaxService.getOne(this.pelicula_id).subscribe({
+      next: (data: IPelicula) => {
+        this.oPelicula = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  }
+
   doRemove(u: IAlquiler) {
     this.oAlquilerToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
         if (this.oAlquilerToRemove) {
-          this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
+          this.oMatSnackBar.open('The reply has been removed.', '', { duration: 1200 });
           this.alquilerService.removeOne(this.oAlquilerToRemove.id).subscribe({
             next: () => {
               this.getPage();
             },
             error: (error: HttpErrorResponse) => {
               this.status = error;
-              this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
+              this.oMatSnackBar.open("The reply hasn't been removed.", '', { duration: 1200 });
             }
           });
         }
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
+        this.oMatSnackBar.open("The reply hasn't been removed.", '', { duration: 1200 });
       }
     });
   }

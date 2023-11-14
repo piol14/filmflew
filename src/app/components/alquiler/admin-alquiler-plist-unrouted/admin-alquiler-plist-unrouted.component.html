@@ -1,18 +1,23 @@
-<div *ngIf="status!=null">
+<div *ngIf="status != null">
   <div class="d-flex justify-content-center my-3">
     <div class="alert alert-danger" role="alert">
-      ERROR: {{status!.message}}
+      ERROR: {{ status!.message }}
     </div>
   </div>
 </div>
 
-<div *ngIf="status==null">
+<div *ngIf="status == null">
   <div class="d-flex justify-content-end mb-3">
-    <h6>Mostrando {{oPage.numberOfElements}} de un total de {{oPage.totalElements}} alquileres</h6>
+    <h6>Mostrando {{ oPage.numberOfElements }} de un total de {{ oPage.totalElements }} alquileres</h6>
   </div>
   <div class="flex justify-content-center mb-3">
-    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    <p-paginator
+      (onPageChange)="onPageChang($event)"
+      [first]="oPaginatorState.first!"
+      [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage.totalElements"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    ></p-paginator>
   </div>
 
   <div class="mb-5">
@@ -29,19 +34,33 @@
       </thead>
       <tbody>
         <tr *ngFor="let alquiler of oPage.content" class="align-middle">
-          <td class="text-center"><strong>{{alquiler.id}}</strong></td>
-          <td>{{alquiler.fecha_alquiler}}</td>
-          <td>{{alquiler.fecha_devolucion}}</td>
-          <td class="text-center">{{alquiler.cliente}} </td>
-          <td class="text-center">{{alquiler.pelicula}} </td>
+          <td class="text-center"><strong>{{ alquiler.id }}</strong></td>
+          <td>{{ alquiler.fecha_alquiler }}</td>
+          <td>{{ alquiler.fecha_devolucion }}</td>
+          <td>
+            <a *ngIf="alquiler.cliente" [routerLink]="['/admin','cliente','view',alquiler.cliente?.id]">
+              ({{ alquiler.cliente?.id }}) {{ alquiler.cliente?.nombre }}
+            </a>
+          </td>
+          <td>
+            <a [routerLink]="['/admin', 'pelicula', 'view', alquiler.pelicula?.id]">
+              ({{ alquiler.pelicula?.id }}) {{ alquiler.pelicula?.titulo }}
+            </a>
+          </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button class="btn btn-primary" [routerLink]="['/admin','alquiler','view',alquiler.id]"><i
-                  class="pi pi-eye"></i></button>
-              <button class="btn btn-primary" (click)="doView(alquiler)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="btn btn-warning" [routerLink]="['/admin','alquiler','edit',alquiler.id]"><i
-                  class="pi pi-pencil"></i></button>
-              <button class="btn btn-danger" (click)="doRemove(alquiler)"><i class="pi pi-trash"></i></button>
+              <button class="btn btn-primary" [routerLink]="['/admin', 'alquiler', 'view', alquiler.id]">
+                <i class="pi pi-eye"></i>
+              </button>
+              <button class="btn btn-primary" (click)="doView(alquiler)">
+                <i class="pi pi-arrow-circle-up"></i>
+              </button>
+              <button class="btn btn-warning" [routerLink]="['/admin', 'alquiler', 'edit', alquiler.id]">
+                <i class="pi pi-pencil"></i>
+              </button>
+              <button  class="btn btn-danger" (click)="doRemove(alquiler)">
+                <i class="pi pi-trash"></i>
+              </button>
             </div>
           </td>
         </tr>
