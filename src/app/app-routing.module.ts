@@ -18,9 +18,13 @@ import { AdminPeliculaEditRoutedComponent } from './components/pelicula/admin-pe
 import { AdminPeliculaViewRoutedComponent } from './components/pelicula/admin-pelicula-view-routed/admin-pelicula-view-routed.component';
 import { AdminClienteViewRoutedComponent } from './components/cliente/admin-cliente-view-routed/admin-cliente-view-routed.component';
 import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-alquiler-view-routed/admin-alquiler-view-routed.component';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
+  { path: 'login', component: LoginRoutedComponent },
+  { path: 'logout', component: LogoutRoutedComponent },
   //--
   { path: 'admin/cliente/plist', component: AdminClientePlistRoutedComponent },
   { path: 'admin/cliente/view/:id', component: AdminClienteViewRoutedComponent },    

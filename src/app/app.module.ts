@@ -52,6 +52,11 @@ import { AdminPeliculaFormUnroutedComponent } from './components/pelicula/admin-
 import { AdminPeliculaSelectionUnroutedComponent } from './components/pelicula/admin-pelicula-selection-unrouted/admin-pelicula-selection-unrouted.component';
 import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
 import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-alquiler-view-routed/admin-alquiler-view-routed.component';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
+import { SessionAjaxService } from './service/session.ajax.service.ts.service';
+import { CryptoService } from './service/cripto.service';
 //--
 @NgModule({
   declarations: [
@@ -85,7 +90,11 @@ import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-al
     AdminAlquilerEditRoutedComponent,
     AdminAlquilerPlistUnroutedComponent,
     AdminAlquilerDetailUnroutedComponent,
-    
+    //--
+    LoginRoutedComponent,
+    LogoutRoutedComponent,
+    FooterUnroutedComponent
+ 
    
   ],
   imports: [
@@ -117,7 +126,9 @@ import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-al
     MatSnackBar,
     ClienteAjaxService,
     PeliculaAjaxService,
-    AlquilerAjaxService
+    AlquilerAjaxService,
+    SessionAjaxService,
+    CryptoService
   ],
   bootstrap: [AppComponent]
 })

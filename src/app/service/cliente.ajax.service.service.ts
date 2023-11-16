@@ -11,6 +11,9 @@ export class ClienteAjaxService {
     constructor(
         private oHttpClient: HttpClient
     ) { }
+    getByUsername(username: string): Observable<ICliente> {
+        return this.oHttpClient.get<ICliente>(this.sUrl + "/byUsername/" + username);
+    }
     createCliente(reply: ICliente): Observable<ICliente> {
         return this.oHttpClient.post<ICliente>(this.sUrl, reply);
     }
