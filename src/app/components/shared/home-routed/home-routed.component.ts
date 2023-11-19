@@ -1,115 +1,62 @@
+// home-pelicula-list.component.ts
+
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { PaginatorState } from 'primeng/paginator';
 
-interface IIndividuo { nombre: string; edad: number; sexo: string };
-
-interface IUser {
-  id: number;
-  name: string;
-  surname: string;
-  lastname: string;
-  email: string;
-  username: string;
-  role: boolean;
-  threads: number;
-  replies: number
-}
+import { IPelicula, IPeliculaPage } from 'src/app/model/model.interfaces';
+import { PeliculaAjaxService } from 'src/app/service/pelicula.ajax.service.service';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 
 @Component({
-  selector: 'app-home-routed',
+  selector: 'app-pelicula-list',
   templateUrl: './home-routed.component.html',
   styleUrls: ['./home-routed.component.css']
 })
-
 export class HomeRoutedComponent implements OnInit {
-
-  title: string = 'phosphorum';
-  datos: IUser = { id: 0, name: "", surname: "", lastname: "", email: "", username: "", role: false, threads: 0, replies: 0 };
-  urlimagen: string = "https://estaticos-cdn.sport.es/clip/885c9147-8b6a-4bc9-8937-aa27780bfabd_media-libre-aspect-ratio_default_0.jpg";
-  w: string = "400";
-  personas: string[] = ['Antoni', 'Luis', 'Maria', 'Pedro', 'Juan', 'Jose', 'Ana', 'Luisa'];
-  texto: string = "textorojo";
-  cuatro: number = 4;
-  mitexto: string = "Mi texto";
-  condition: boolean = true;
-  id: number = 1;
-  poblacion: IIndividuo[] = [
-    {
-      nombre: "Antonio",
-      edad: 20,
-      sexo: "M"
-    },
-    {
-      nombre: "Maria",
-      edad: 30,
-      sexo: "F"
-    },
-    {
-      nombre: "Luis",
-      edad: 40,
-      sexo: "M"
-    },
-    {
-      nombre: "Ana",
-      edad: 50,
-      sexo: "F"
-    },
-    {
-      nombre: "Pedro",
-      edad: 60,
-      sexo: "M"
-    },
-    {
-      nombre: "Luisa",
-      edad: 70,
-      sexo: "F"
-    },
-    {
-      nombre: "Juan",
-      edad: 80,
-      sexo: "M"
-    },
-    {
-      nombre: "Jose",
-      edad: 90,
-      sexo: "M"
-    }
-  ]
-
+  oPage: any = [];
+  orderField: string = "id";
+  orderDirection: string = "asc";
+  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  status: HttpErrorResponse | null = null;
+  strUserName: string = "";
   constructor(
-    private http: HttpClient
+    private peliculaAjaxService: PeliculaAjaxService,
+    private sessionService: SessionAjaxService
   ) { }
+
   ngOnInit() {
+    this.getPage();
+    this.strUserName = this.sessionService.getUsername();
   }
 
-
-  saludar(): void {
-    alert("Hola");
-  }
-
-  escribir(): void {
-    console.log("Escribiendo");
-  }
-
-  cargar(): void {
-    console.log("Cargando AJAX...");
-
-    this.http.get("http://localhost:8083/user/" + this.id).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.datos = data;
+  getPage(): void {
+    this.peliculaAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
+      next: (data: IPeliculaPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        console.log(this.oPaginatorState);
       },
-      error: (error: any) => {
-        console.log(error);
+      error: (error: HttpErrorResponse) => {
+        this.oPage.error = error;
+        this.status = error;
       }
-
     })
-
   }
 
+  onPageChange(event: PaginatorState) {
+    this.oPaginatorState.rows = event.rows;
+    this.oPaginatorState.page = event.page;
+    this.getPage();
+  }
+
+  doOrder(fieldOrder: string) {
+    this.orderField = fieldOrder;
+    if (this.orderDirection == "asc") {
+      this.orderDirection = "desc";
+    } else {
+      this.orderDirection = "asc";
+    }
+    this.getPage();
+  }
 }
-
-
-
-
-

@@ -30,4 +30,7 @@ export class PeliculaAjaxService {
         if (!page) page = 0;
         return this.oHttpClient.get<IPeliculaPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
     }
+    generateRandom(amount: number): Observable<number> {
+        return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
+    }
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,12 +52,13 @@ import { AdminPeliculaFormUnroutedComponent } from './components/pelicula/admin-
 import { AdminPeliculaSelectionUnroutedComponent } from './components/pelicula/admin-pelicula-selection-unrouted/admin-pelicula-selection-unrouted.component';
 import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
 import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-alquiler-view-routed/admin-alquiler-view-routed.component';
-import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
-import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { SessionAjaxService } from './service/session.ajax.service.ts.service';
 import { CryptoService } from './service/cripto.service';
-//--
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { AuthInterceptor } from './components/interceptor/auth.interceptor';
+
 @NgModule({
   declarations: [
     TrimPipe,
@@ -92,9 +93,8 @@ import { CryptoService } from './service/cripto.service';
     AdminAlquilerDetailUnroutedComponent,
     //--
     LoginRoutedComponent,
-    LogoutRoutedComponent,
     FooterUnroutedComponent
- 
+    
    
   ],
   imports: [
@@ -128,7 +128,9 @@ import { CryptoService } from './service/cripto.service';
     PeliculaAjaxService,
     AlquilerAjaxService,
     SessionAjaxService,
-    CryptoService
+    CryptoService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })

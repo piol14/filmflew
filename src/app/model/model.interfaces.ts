@@ -47,7 +47,8 @@ export interface ICliente extends IEntity {
     nombre: string,
     direccion: string,
     telefono: string,
-   
+   username:string,
+   password:string,
     rol: boolean,
    alquileres: number
 }
@@ -57,7 +58,7 @@ export interface IClientePage extends IPage<ICliente> {
 
 export interface IPelicula extends IEntity {
     director: string,
-
+    precio:number,
     duracion: number,
     genero: string, 
     titulo: string
@@ -67,8 +68,8 @@ export interface IPeliculaPage extends IPage<IPelicula> {
 }
 
 export interface IAlquiler extends IEntity {
-    fecha_alquiler: string,
-    fecha_devolucion: string,
+    fecha_alquiler: Date,
+    fecha_devolucion: Date,
     cliente: ICliente,
     pelicula: IPelicula
 }

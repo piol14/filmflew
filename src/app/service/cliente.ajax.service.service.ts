@@ -39,4 +39,7 @@ export class ClienteAjaxService {
             return new Observable<number>();
         }
     }
+    generateRandom(amount: number): Observable<number> {
+        return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
+    }
 }

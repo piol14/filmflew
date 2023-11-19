@@ -15,13 +15,21 @@
             <mat-label>Fecha de Alquiler:</mat-label>
             <input matInput formControlName="fecha_alquiler" placeholder="Fecha de Alquiler" required>
           </mat-form-field>
+          <div *ngIf="alquilerForm.controls['fecha_alquiler'].value">
+            <p>Fecha de Alquiler: {{ alquilerForm.controls['fecha_alquiler'].value | date:'dd/MM/yyyy' }}</p>
+          </div>
         </div>
+
         <div class="form-group">
           <mat-form-field>
             <mat-label>Fecha de Devolución:</mat-label>
             <input matInput formControlName="fecha_devolucion" placeholder="Fecha de Devolución" required>
           </mat-form-field>
+          <div *ngIf="alquilerForm.controls['fecha_devolucion'].value">
+            <p>Fecha de Devolución: {{ alquilerForm.controls['fecha_devolucion'].value | date:'dd/MM/yyyy' }}</p>
+          </div>
         </div>
+
         <div formGroupName="pelicula">
           <div class="form-group">
             <mat-form-field style="margin-right: 10px;">
@@ -32,25 +40,27 @@
             <button class="btn btn-primary" type="button" (click)="onShowPeliculaSelection()">
               <i class="pi pi-search"></i> Buscar una película
             </button>
-           
           </div>
         </div>
-
+        
         <div formGroupName="cliente">
           <div class="form-group">
             <mat-form-field style="width: 100px; margin-right: 10px;">
               <mat-label>Cliente:</mat-label>
               <input matInput formControlName="id" placeholder="ID de Cliente" required readonly>
             </mat-form-field>
-            <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
-              Buscar un cliente</button>
-             
+            <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()">
+              <i class="pi pi-search"></i> Buscar un cliente
+            </button>
           </div>
         </div>
+        
         <div class="text-center mt-5">
           <button mat-raised-button color="primary" type="submit">Guardar Alquiler</button>
         </div>
-      </form>
-    </div>
-  </div>
-</div>
+        </form>
+        </div>
+        </div>
+        </div>
+
+      
