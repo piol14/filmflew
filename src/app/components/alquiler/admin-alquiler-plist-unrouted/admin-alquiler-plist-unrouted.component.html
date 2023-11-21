@@ -27,6 +27,7 @@
           <th (click)="doOrder('id')">ID</th>
           <th (click)="doOrder('fecha_alquiler')">Fecha de Alquiler</th>
           <th (click)="doOrder('fecha_devolucion')">Fecha de Devolución</th>
+          <th (click)="doOrder('precio')">Precio</th>
           <th (click)="doOrder('cliente_id')">ID de Cliente</th>
           <th (click)="doOrder('pelicula_id')">ID de Película</th>
           <th>Herramientas</th>
@@ -37,6 +38,7 @@
           <td class="text-center"><strong>{{ alquiler.id }}</strong></td>
           <td>{{ alquiler.fecha_alquiler }}</td>
           <td>{{ alquiler.fecha_devolucion }}</td>
+          <td>{{alquiler.precio}}</td>
           <td>
             <a *ngIf="alquiler.cliente" [routerLink]="['/admin','cliente','view',alquiler.cliente?.id]">
               ({{ alquiler.cliente?.id }}) {{ alquiler.cliente?.nombre }}

@@ -7,7 +7,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminClienteSelectionUnroutedComponent } from '../../cliente/admin-cliente-selection-unrouted/admin-cliente-selection-unrouted.component';
 import { AdminPeliculaSelectionUnroutedComponent } from '../../pelicula/admin-pelicula-selection-unrouted/admin-pelicula-selection-unrouted.component';
 import { AlquilerAjaxService } from 'src/app/service/alquiler.ajax.service.service';
-import { IAlquiler, IPelicula, ICliente, formOperation } from 'src/app/model/model.interfaces';
+import { IAlquiler, IPelicula, ICliente, formOperation, DuracionAlquiler } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-alquiler-form-unrouted',
@@ -15,6 +15,7 @@ import { IAlquiler, IPelicula, ICliente, formOperation } from 'src/app/model/mod
   styleUrls: ['./admin-alquiler-form-unrouted.component.css']
 })
 export class AdminAlquilerFormUnroutedComponent implements OnInit {
+  DuracionAlquiler = DuracionAlquiler;
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; // new or edit
 
@@ -37,14 +38,15 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
   initializeForm(alquiler: IAlquiler) {
     this.alquilerForm = this.formBuilder.group({
       id: [alquiler.id],
-      fecha_alquiler: [alquiler.fecha_alquiler, [Validators.required]],
-      fecha_devolucion: [alquiler.fecha_devolucion, [Validators.required]],
+     
+      precio: [alquiler.precio, [Validators.required]],
       cliente: this.formBuilder.group({
         id: [alquiler.cliente?.id]
       }),
       pelicula: this.formBuilder.group({
         id: [alquiler.pelicula?.id]
       }),
+      duracion: [alquiler.duracion, Validators.required], // Agrega el campo "duracion"
     });
   }
 
@@ -71,22 +73,30 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("Submit button clicked");
     if (this.alquilerForm.valid) {
       const formValues = this.alquilerForm.value;
-      console.log('JSON payload:', JSON.stringify(formValues));
+
+      // Obtén el valor de la duración seleccionada
+      const duracion = this.alquilerForm.controls['duracion'].value;
+
+      // Agrega el valor de la duración a formValues antes de enviar al backend
+      formValues.duracion = duracion;
 
       if (this.operation === 'NEW') {
         this.alquilerService.createAlquiler(formValues).subscribe({
+         
           next: (data: IAlquiler) => {
             this.oAlquiler = data;
+           
             this.initializeForm(this.oAlquiler);
+         
             this.matSnackBar.open("Alquiler has been created.", '', { duration: 1200 });
             this.router.navigate(['/admin', 'alquiler', 'view', this.oAlquiler.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
             this.matSnackBar.open("Can't create alquiler.", '', { duration: 1200 });
-            console.log(this.oAlquiler)
           }
         });
       } else {

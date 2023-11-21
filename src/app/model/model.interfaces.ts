@@ -58,7 +58,7 @@ export interface IClientePage extends IPage<ICliente> {
 
 export interface IPelicula extends IEntity {
     director: string,
-    precio:number,
+    
     duracion: number,
     genero: string, 
     titulo: string
@@ -72,7 +72,14 @@ export interface IAlquiler extends IEntity {
     fecha_devolucion: Date,
     cliente: ICliente,
     pelicula: IPelicula
+    precio:number,
+    duracion:number
 }
+export enum DuracionAlquiler {
+    SEMANA = 'SEMANA',
+    MES = 'MES',
+    ANIO = 'ANIO',
+  }
 
 export interface IAlquilerPage extends IPage<IAlquiler> {
 }

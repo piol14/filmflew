@@ -40,7 +40,7 @@ export class AdminPeliculaFormUnroutedComponent implements OnInit {
       director: [oPelicula.director, [Validators.required]],
       duracion: [oPelicula.duracion, [Validators.required, Validators.min(0)]],
       genero: [oPelicula.genero, [Validators.required, Validators.minLength(1), Validators.maxLength(2048)]],
-    precio: [oPelicula.precio, [Validators.required, Validators.minLength(1), Validators.maxLength(2048)]],
+   
     });
   }
 

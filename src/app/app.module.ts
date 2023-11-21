@@ -52,7 +52,7 @@ import { AdminPeliculaFormUnroutedComponent } from './components/pelicula/admin-
 import { AdminPeliculaSelectionUnroutedComponent } from './components/pelicula/admin-pelicula-selection-unrouted/admin-pelicula-selection-unrouted.component';
 import { AdminAlquilerDetailUnroutedComponent } from './components/alquiler/admin-alquiler-detail-unrouted/admin-alquiler-detail-unrouted.component';
 import { AdminAlquilerViewRoutedComponent } from './components/alquiler/admin-alquiler-view-routed/admin-alquiler-view-routed.component';
-
+import { MatSelectModule } from '@angular/material/select';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { SessionAjaxService } from './service/session.ajax.service.ts.service';
 import { CryptoService } from './service/cripto.service';
@@ -117,7 +117,7 @@ import { AuthInterceptor } from './components/interceptor/auth.interceptor';
     MatInputModule,
     MatRadioModule,
     MatFormFieldModule,
-
+    MatSelectModule
   ],
   providers: [
     MessageService,
@@ -129,6 +129,7 @@ import { AuthInterceptor } from './components/interceptor/auth.interceptor';
     AlquilerAjaxService,
     SessionAjaxService,
     CryptoService,
+    
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 
   ],

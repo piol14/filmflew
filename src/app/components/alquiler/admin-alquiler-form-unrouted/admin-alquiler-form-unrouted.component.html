@@ -10,26 +10,25 @@
   <div class="col-12">
     <div class="d-flex justify-content-center my-3">
       <form [formGroup]="alquilerForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Precio:</mat-label>
+            <input matInput formControlName="precio" placeholder="Precio" type="number" step="0.01" required>
+          </mat-form-field>
+        </div>
+        
         <div class="form-group">
           <mat-form-field>
-            <mat-label>Fecha de Alquiler:</mat-label>
-            <input matInput formControlName="fecha_alquiler" placeholder="Fecha de Alquiler" required>
+            <mat-label>Duración del Alquiler:</mat-label>
+            <mat-select formControlName="duracion" placeholder="Seleccionar duración" required>
+              <mat-option [value]="DuracionAlquiler.SEMANA">Una Semana</mat-option>
+              <mat-option [value]="DuracionAlquiler.MES">Un Mes</mat-option>
+              <mat-option [value]="DuracionAlquiler.ANIO">Un Año</mat-option>
+            </mat-select>
           </mat-form-field>
-          <div *ngIf="alquilerForm.controls['fecha_alquiler'].value">
-            <p>Fecha de Alquiler: {{ alquilerForm.controls['fecha_alquiler'].value | date:'dd/MM/yyyy' }}</p>
-          </div>
         </div>
-
-        <div class="form-group">
-          <mat-form-field>
-            <mat-label>Fecha de Devolución:</mat-label>
-            <input matInput formControlName="fecha_devolucion" placeholder="Fecha de Devolución" required>
-          </mat-form-field>
-          <div *ngIf="alquilerForm.controls['fecha_devolucion'].value">
-            <p>Fecha de Devolución: {{ alquilerForm.controls['fecha_devolucion'].value | date:'dd/MM/yyyy' }}</p>
-          </div>
-        </div>
-
+        
         <div formGroupName="pelicula">
           <div class="form-group">
             <mat-form-field style="margin-right: 10px;">
@@ -56,11 +55,9 @@
         </div>
         
         <div class="text-center mt-5">
-          <button mat-raised-button color="primary" type="submit">Guardar Alquiler</button>
+          <button mat-raised-button color="primary" type="submit" >Guardar Alquiler</button>
         </div>
-        </form>
-        </div>
-        </div>
-        </div>
-
-      
+      </form>
+    </div>
+  </div>
+</div>
