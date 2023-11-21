@@ -133,7 +133,10 @@ import { AuthInterceptor } from './components/interceptor/auth.interceptor';
     SessionAjaxService,
     CryptoService,
     
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: ConfirmationService, useClass: ConfirmationService },
+{ provide: MatSnackBar, useClass: MatSnackBar },
+
 
   ],
   bootstrap: [AppComponent]
