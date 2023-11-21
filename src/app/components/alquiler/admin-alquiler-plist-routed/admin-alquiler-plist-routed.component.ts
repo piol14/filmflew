@@ -3,7 +3,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlquilerAjaxService } from 'src/app/service/alquiler.ajax.service.service';
 import { Subject } from 'rxjs/internal/Subject';
-import { ConfirmationService } from 'primeng/api/confirmationservice';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
  // Asumiendo que tienes un servicio AlquilerAjaxService
 
 @Component({

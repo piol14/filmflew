@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PeliculaAjaxService } from 'src/app/service/pelicula.ajax.service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmationService } from 'primeng/api/confirmationservice';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
 import { Subject } from 'rxjs/internal/Subject';
 @Component({
   selector: 'app-admin-pelicula-plist-routed',
