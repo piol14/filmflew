@@ -73,7 +73,7 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Submit button clicked");
+   
     if (this.alquilerForm.valid) {
       const formValues = this.alquilerForm.value;
 
@@ -92,7 +92,9 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
             this.initializeForm(this.oAlquiler);
          
             this.matSnackBar.open("Alquiler has been created.", '', { duration: 1200 });
-            this.router.navigate(['/admin', 'alquiler', 'view', this.oAlquiler.id]);
+            console.log(this.oAlquiler)
+            this.router.navigate(['/admin', 'alquiler', 'view', this.oAlquiler]);
+            
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

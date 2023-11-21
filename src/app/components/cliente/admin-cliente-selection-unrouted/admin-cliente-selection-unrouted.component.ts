@@ -16,7 +16,7 @@ export class AdminClienteSelectionUnroutedComponent implements OnInit {
   oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";
-  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 1, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oUserToRemove: ICliente | null = null;
 

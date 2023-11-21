@@ -21,8 +21,14 @@
                 <td>Fecha de Devolución</td>
                 <td>{{ oAlquiler.fecha_devolucion }}</td>
             </tr>
+            <tr>
+                <td>Duracion</td>
+                <td>{{ oAlquiler.duracion }}</td>
+            </tr>
+            <tr>
             <td>Precio</td>
             <td>{{oAlquiler.precio}}</td>
+        </tr>
             <tr>
                 <td>Cliente</td>
                 <td><a [routerLink]="['/admin', 'cliente', 'view', oAlquiler.cliente?.id]">{{ oAlquiler.cliente?.nombre }}</a></td>

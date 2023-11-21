@@ -33,4 +33,7 @@ export class AlquilerAjaxService {
     generateRandom(amount: number): Observable<number> {
         return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
     }
+    empty(): Observable<number> {
+        return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+    }
 }

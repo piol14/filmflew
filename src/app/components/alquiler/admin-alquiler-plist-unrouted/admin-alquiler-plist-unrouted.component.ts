@@ -23,8 +23,8 @@ export class AdminAlquilerPlistUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oAlquilerToRemove: IAlquiler | null = null;
-  @Input() cliente_id: number = 0; // filter by user
-  @Input() pelicula_id: number = 0; // filter by thread
+  @Input() cliente_id: number = 0; // filter by cliente
+  @Input() pelicula_id: number = 0; // filter by pelicula
 
   oCliente: ICliente | null = null; // data of user if id_user is set for filter
   oPelicula: IPelicula | null = null; // data of thread if id_thread is set for filter

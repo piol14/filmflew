@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
 //--
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -117,7 +119,8 @@ import { AuthInterceptor } from './components/interceptor/auth.interceptor';
     MatInputModule,
     MatRadioModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    ConfirmPopupModule
   ],
   providers: [
     MessageService,

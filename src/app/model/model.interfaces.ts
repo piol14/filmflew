@@ -73,7 +73,7 @@ export interface IAlquiler extends IEntity {
     cliente: ICliente,
     pelicula: IPelicula
     precio:number,
-    duracion:number
+    duracion:DuracionAlquiler
 }
 export enum DuracionAlquiler {
     SEMANA = 'SEMANA',

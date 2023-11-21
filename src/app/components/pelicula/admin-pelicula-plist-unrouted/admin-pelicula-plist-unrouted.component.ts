@@ -1,5 +1,5 @@
 import { PeliculaAjaxService } from '../../../service/pelicula.ajax.service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -7,6 +7,7 @@ import { PaginatorState } from 'primeng/paginator';
 import { IPelicula, IPeliculaPage } from 'src/app/model/model.interfaces';
 import { AdminPeliculaDetailUnroutedComponent } from '../admin-pelicula-detail-unrouted/admin-pelicula-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-admin-pelicula-plist-unrouted',
@@ -14,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./admin-pelicula-plist-unrouted.component.css']
 })
 export class AdminPeliculaPlistUnroutedComponent implements OnInit {
+   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";
