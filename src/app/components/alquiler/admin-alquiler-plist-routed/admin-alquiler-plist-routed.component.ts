@@ -45,7 +45,7 @@ export class AdminAlquilerPlistRoutedComponent implements OnInit {
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget, 
-      message: 'Are you sure that you want to remove all the replies?',
+      message: 'Esta seguro que quiere borrar todos los alquileres?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.oAlquilerAjaxService.empty().subscribe({

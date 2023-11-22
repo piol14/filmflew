@@ -50,7 +50,7 @@ export class AdminClienteFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMatSnackBar.open("Error reading user from server.", '', { duration: 1200 });
+          this.oMatSnackBar.open("Error al leer el cliente.", '', { duration: 1200 });
         }
       })
     } else {
@@ -70,12 +70,12 @@ export class AdminClienteFormUnroutedComponent implements OnInit {
             this.oCliente = data;
             this.initializeForm(this.oCliente);
             // avisar al usuario que se ha creado correctamente
-            this.oMatSnackBar.open("User has been created.", '', { duration: 1200 });
+            this.oMatSnackBar.open("El cliente ha sido creado.", '', { duration: 1200 });
             this.oRouter.navigate(['/admin', 'cliente', 'view', this.oCliente]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("Can't create user.", '', { duration: 1200 });
+            this.oMatSnackBar.open("No se puede crear el cliente.", '', { duration: 1200 });
           }
         })
 
@@ -85,12 +85,12 @@ export class AdminClienteFormUnroutedComponent implements OnInit {
             this.oCliente = data;
             this.initializeForm(this.oCliente);
             // avisar al usuario que se ha actualizado correctamente
-            this.oMatSnackBar.open("User has been updated.", '', { duration: 1200 });
+            this.oMatSnackBar.open("El cliente ha sido actualizado.", '', { duration: 1200 });
             this.oRouter.navigate(['/admin', 'cliente', 'view', this.oCliente.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("Can't update user.", '', { duration: 1200 });
+            this.oMatSnackBar.open("No se puede actualizar el cliente.", '', { duration: 1200 });
           }
         })
       }      
