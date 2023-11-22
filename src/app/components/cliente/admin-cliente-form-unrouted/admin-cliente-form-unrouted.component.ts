@@ -34,7 +34,8 @@ export class AdminClienteFormUnroutedComponent implements OnInit {
       id: [oCliente.id],
      nombre: [oCliente.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       direccion: [oCliente.direccion, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
-      telefono: [oCliente.telefono, Validators.maxLength(12)],
+      telefono: [oCliente.telefono, [Validators.maxLength(12), Validators.pattern('^[0-9]*$')]],
+      username: [oCliente.username, [Validators.maxLength(50), Validators.minLength(3) ,Validators.required]],
      
       rol: [oCliente.rol, Validators.required]
     });

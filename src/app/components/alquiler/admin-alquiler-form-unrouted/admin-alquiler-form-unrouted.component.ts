@@ -59,7 +59,7 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.matSnackBar.open("Error reading alquiler from server.", '', { duration: 1200 });
+          this.matSnackBar.open("Error al leer el alquiler del servidor.", '', { duration: 1200 });
         }
       });
     } else {
@@ -91,14 +91,14 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
            
             this.initializeForm(this.oAlquiler);
          
-            this.matSnackBar.open("Alquiler has been created.", '', { duration: 1200 });
+            this.matSnackBar.open("El alquiler ha sido creado.", '', { duration: 1200 });
             console.log(this.oAlquiler)
             this.router.navigate(['/admin', 'alquiler', 'view', this.oAlquiler]);
             
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't create alquiler.", '', { duration: 1200 });
+            this.matSnackBar.open("No se puede crear el alquiler.", '', { duration: 1200 });
           }
         });
       } else {
@@ -106,12 +106,12 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
           next: (data: IAlquiler) => {
             this.oAlquiler = data;
             this.initializeForm(this.oAlquiler);
-            this.matSnackBar.open("Alquiler has been updated.", '', { duration: 1200 });
+            this.matSnackBar.open("El alquiler ha sido actualizado.", '', { duration: 1200 });
             this.router.navigate(['/admin', 'alquiler', 'view', this.oAlquiler.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't update alquiler.", '', { duration: 1200 });
+            this.matSnackBar.open("No se puede actualizar el alquiler.", '', { duration: 1200 });
           }
         });
       }
@@ -137,7 +137,7 @@ export class AdminAlquilerFormUnroutedComponent implements OnInit {
 
   onShowPeliculaSelection() {
     this.oDynamicDialogRef = this.dialogService.open(AdminPeliculaSelectionUnroutedComponent, {
-      header: 'Select a Pelicula',
+      header: 'Selecciona una pelicula',
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,

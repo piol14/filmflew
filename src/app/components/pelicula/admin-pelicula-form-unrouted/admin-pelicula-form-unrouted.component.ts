@@ -53,7 +53,7 @@ export class AdminPeliculaFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMatSnackBar.open("Error reading Pelicula from server.", '', { duration: 1200 });
+          this.oMatSnackBar.open("Error al leer pelicula desde el servidor.", '', { duration: 1200 });
         }
       })
     } else {
@@ -72,12 +72,12 @@ export class AdminPeliculaFormUnroutedComponent implements OnInit {
           next: (data: IPelicula) => {
             this.oPelicula = {} as IPelicula;
             this.initializeForm(this.oPelicula); //el id se genera en el servidor
-            this.oMatSnackBar.open('Pelicula has been created.', '', { duration: 1200 });
+            this.oMatSnackBar.open('La pelicula ha sido creada.', '', { duration: 1200 });
             this.router.navigate(['/admin', 'pelicula', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to create Pelicula.', '', { duration: 1200 });
+            this.oMatSnackBar.open('Error al crear la pelicula.', '', { duration: 1200 });
           }
         });
       } else {
@@ -85,12 +85,12 @@ export class AdminPeliculaFormUnroutedComponent implements OnInit {
           next: (data: IPelicula) => {
             this.oPelicula = data;
             this.initializeForm(this.oPelicula);
-            this.oMatSnackBar.open('Pelicula has been updated.', '', { duration: 1200 });
+            this.oMatSnackBar.open('La pelicula ha sido actualizada.', '', { duration: 1200 });
             this.router.navigate(['/admin', 'pelicula', 'view', this.oPelicula.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to update Pelicula.', '', { duration: 1200 });
+            this.oMatSnackBar.open('Error al actualizar la pelicula', '', { duration: 1200 });
           }
         });
       }

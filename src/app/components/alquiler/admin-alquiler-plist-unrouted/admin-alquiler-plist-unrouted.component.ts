@@ -119,20 +119,20 @@ export class AdminAlquilerPlistUnroutedComponent implements OnInit {
     this.oCconfirmationService.confirm({
       accept: () => {
         if (this.oAlquilerToRemove) {
-          this.oMatSnackBar.open('The reply has been removed.', '', { duration: 1200 });
+          this.oMatSnackBar.open('El alquiler ha sido eliminado.', '', { duration: 1200 });
           this.alquilerService.removeOne(this.oAlquilerToRemove.id).subscribe({
             next: () => {
               this.getPage();
             },
             error: (error: HttpErrorResponse) => {
               this.status = error;
-              this.oMatSnackBar.open("The reply hasn't been removed.", '', { duration: 1200 });
+              this.oMatSnackBar.open("El alquiler no puede ser eliminado.", '', { duration: 1200 });
             }
           });
         }
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The reply hasn't been removed.", '', { duration: 1200 });
+        this.oMatSnackBar.open("EL alquiler no ha sido eliminado.", '', { duration: 1200 });
       }
     });
   }

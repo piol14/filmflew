@@ -87,7 +87,7 @@ export class AdminClientePlistUnroutedComponent implements OnInit {
     this.oClienteToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The client has been removed.", '', { duration: 1200 });
+        this.oMatSnackBar.open("El cliente ha sido borrado .", '', { duration: 1200 });
         this.oClienteAjaxService.removeOne(this.oClienteToRemove?.id).subscribe({
           next: () => {
             this.getPage();
@@ -95,12 +95,12 @@ export class AdminClientePlistUnroutedComponent implements OnInit {
           error: (error: HttpErrorResponse) => {
             this.oPage.error = error;
             this.status = error;
-            this.oMatSnackBar.open("The client hasn't been removed.", "", { duration: 1200 });
+            this.oMatSnackBar.open("El cliente no se puede borrar", "", { duration: 1200 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 1200 });
+        this.oMatSnackBar.open("El cliente no ha sido borrado.", "", { duration: 1200 });
       }
     });
   }

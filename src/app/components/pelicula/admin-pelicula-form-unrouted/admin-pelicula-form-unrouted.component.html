@@ -14,34 +14,45 @@
           <mat-form-field *ngIf="operation=='EDIT'">
             <mat-label>ID:</mat-label>
             <input matInput formControlName="id" placeholder="ID" required readonly>
-            <mat-hint align="end">(can't change this number)</mat-hint>
+            <mat-hint align="end">(no se puede cambiar este numero)</mat-hint>
           </mat-form-field>
         </div>
+
         <div class="form-group">
-          <mat-form-field [style.width.px]=350>
+          <mat-form-field [style.width.px]="350">
             <mat-label>Titulo:</mat-label>
             <input matInput formControlName="titulo" placeholder="Title" required>
+            <mat-error *ngIf="hasError('titulo', 'required')">El título es requerido</mat-error>
+            <mat-error *ngIf="hasError('titulo', 'minlength')">El título debe tener al menos 1 caracter</mat-error>
+            <mat-error *ngIf="hasError('titulo', 'maxlength')">El título no puede tener más de 2048 caracteres</mat-error>
           </mat-form-field>
         </div>
+
         <div class="form-group">
-          <mat-form-field [style.width.px]=350>
+          <mat-form-field [style.width.px]="350">
             <mat-label>Director:</mat-label>
             <input matInput formControlName="director" placeholder="Director" required>
+            <mat-error *ngIf="hasError('director', 'required')">El director es requerido</mat-error>
           </mat-form-field>
         </div>
+
         <div class="form-group">
-          <mat-form-field [style.width.px]=350>
+          <mat-form-field [style.width.px]="350">
             <mat-label>Duración:</mat-label>
             <input matInput formControlName="duracion" placeholder="Duración" type="number" required>
+            <mat-error *ngIf="hasError('duracion', 'required')">La duración es requerida</mat-error>
+            <mat-error *ngIf="hasError('duracion', 'min')">La duración debe ser mayor o igual a 0</mat-error>
           </mat-form-field>
         </div>
+
         <div class="form-group">
-          <mat-form-field [style.width.px]=350>
+          <mat-form-field [style.width.px]="350">
             <mat-label>Género:</mat-label>
             <input matInput formControlName="genero" placeholder="Género" required>
+            <mat-error *ngIf="hasError('genero', 'required')">El género es requerido</mat-error>
           </mat-form-field>
         </div>
-       
+
         <div class="text-center mt-5">
           <button mat-raised-button color="primary" type="submit">Guardar Pelicula</button>
         </div>

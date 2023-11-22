@@ -21,39 +21,50 @@
           <mat-form-field [style.width.px]="350">
             <mat-label>Nombre:</mat-label>
             <input matInput formControlName="nombre" placeholder="Nombre" required>
-            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
-            <mat-error *ngIf="hasError('nombre', 'required')">Nombre is required</mat-error>
-            <mat-error *ngIf="hasError('nombre', 'minlength')">More length is required</mat-error>
-            <mat-error *ngIf="hasError('nombre', 'maxlength')">Limit exceed</mat-error>
+            <mat-hint align="end">(de 3 a 255 caracteres de largo)</mat-hint>
+            <mat-error *ngIf="hasError('nombre', 'required')">Nombre es requerido </mat-error>
+            <mat-error *ngIf="hasError('nombre', 'minlength')">Se necesitan mas caracteres</mat-error>
+            <mat-error *ngIf="hasError('nombre', 'maxlength')">Limite alcanzado</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]="350">
             <mat-label>Dirección:</mat-label>
             <input matInput formControlName="direccion" placeholder="Dirección" required>
-            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
-            <mat-error *ngIf="hasError('direccion', 'required')">Dirección is required</mat-error>
-            <mat-error *ngIf="hasError('direccion', 'minlength')">More length is required</mat-error>
-            <mat-error *ngIf="hasError('direccion', 'maxlength')">Limit exceed</mat-error>
+            <mat-hint align="end">(de 3 a 255 caracteres de largo) </mat-hint>
+            <mat-error *ngIf="hasError('direccion', 'required')">Dirección es requerido</mat-error>
+            <mat-error *ngIf="hasError('direccion', 'minlength')">Se necesitan mas caracteres</mat-error>
+            <mat-error *ngIf="hasError('direccion', 'maxlength')">Limite alcanzado</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]="350">
             <mat-label>Teléfono:</mat-label>
             <input matInput formControlName="telefono" placeholder="Teléfono">
-            <mat-hint align="end">(max. 255 characters long)</mat-hint>
-            <mat-error *ngIf="hasError('telefono', 'maxlength')">Limit exceed</mat-error>
+            <mat-hint align="end">(maximo de 12 numeros)</mat-hint>
+            <mat-error *ngIf="hasError('telefono', 'maxlength')">Limite alcanzado</mat-error>
           </mat-form-field>
         </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]="350">
+            <mat-label>Nombre de Usuario:</mat-label>
+            <input matInput formControlName="username" placeholder="Nombre de Usuario" required>
+            <mat-hint align="end">(de 3 a 50 caracteres de largo)</mat-hint>
+            <mat-error *ngIf="hasError('username', 'required')">Nombre de Usuario es requerido </mat-error>
+            <mat-error *ngIf="hasError('username', 'minlength')">Se necesitan más caracteres</mat-error>
+            <mat-error *ngIf="hasError('username', 'maxlength')">Límite alcanzado</mat-error>
+          </mat-form-field>
+        </div>
+
 
         <mat-radio-group aria-label="Type of user" formControlName="rol" required>
           <mat-radio-button [value]="true">Admin</mat-radio-button>
           <mat-radio-button [value]="false">User</mat-radio-button>
-          <mat-error *ngIf="hasError('rol', 'required')">User Type is required</mat-error>
+          <mat-error *ngIf="hasError('rol', 'required')">Tipo de usuario requerido </mat-error>
         </mat-radio-group>
 
         <div class="text-center mt-5">
-          <button mat-raised-button color="primary" type="submit">Save User</button>
+          <button mat-raised-button color="primary" type="submit">Guardar cliente</button>
         </div>
       </form>
     </div>

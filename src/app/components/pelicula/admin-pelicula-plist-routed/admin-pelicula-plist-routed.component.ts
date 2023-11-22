@@ -43,23 +43,23 @@ export class AdminPeliculaPlistRoutedComponent implements OnInit {
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget, 
-      message: 'Are you sure that you want to remove all the replies?',
+      message: 'Estas seguro que quieres borrar todas las peliculas?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.oPeliculaAjaxService.empty().subscribe({
           next: (oResponse: number) => {
-            this.oMatSnackBar.open("Now there are " + oResponse + " replies", '', { duration: 2000 });
+            this.oMatSnackBar.open("Ahora hay  " + oResponse + " peliculas", '', { duration: 2000 });
             this.bLoading = false;
             this.forceReload.next(true);
           },
           error: (oError: HttpErrorResponse) => {
-            this.oMatSnackBar.open("Error emptying replies: " + oError.message, '', { duration: 2000 });
+            this.oMatSnackBar.open("Error eliminando peliculas: " + oError.message, '', { duration: 2000 });
             this.bLoading = false;
           },
         })
       },
       reject: () => {
-        this.oMatSnackBar.open("Empty Cancelled!", '', { duration: 2000 });
+        this.oMatSnackBar.open("Vaciado cancelado!", '', { duration: 2000 });
       }
     });
   }
