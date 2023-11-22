@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
@@ -7,15 +7,18 @@ import { IAlquiler, ICliente, IClientePage } from 'src/app/model/model.interface
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClienteAjaxService } from 'src/app/service/cliente.ajax.service.service';
 import { AdminClienteDetailUnroutedComponent } from '../admin-cliente-detail-unrouted/admin-cliente-detail-unrouted.component';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
+  
+  providers:[ConfirmationService],
   selector: 'app-admin-cliente-plist-unrouted',
   templateUrl: './admin-cliente-plist-unrouted.component.html',
   styleUrls: ['./admin-cliente-plist-unrouted.component.css']
 })
 
 export class AdminClientePlistUnroutedComponent implements OnInit {
-
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";

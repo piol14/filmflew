@@ -7,12 +7,13 @@ import { Subject } from 'rxjs';
 import { ClienteAjaxService } from 'src/app/service/cliente.ajax.service.service';
 
 @Component({
+  providers:[ConfirmationService],
   selector: 'app-admin-cliente-plist-routed',
   templateUrl: './admin-cliente-plist-routed.component.html',
   styleUrls: ['./admin-cliente-plist-routed.component.css']
 })
 export class AdminClientePlistRoutedComponent implements OnInit {
-  forceReload: Subject<boolean> = new Subject<boolean>();
+   forceReload: Subject<boolean> = new Subject<boolean>();
   
   bLoading: boolean = false;
 

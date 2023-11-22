@@ -10,13 +10,16 @@ import { IAlquiler, IAlquilerPage, ICliente, IPelicula } from '../../../model/mo
 import { ClienteAjaxService } from 'src/app/service/cliente.ajax.service.service';
 import { PeliculaAjaxService } from 'src/app/service/pelicula.ajax.service.service';
 import { AlquilerAjaxService } from '../../../service/alquiler.ajax.service.service';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
+  providers:[ConfirmationService],
   selector: 'app-admin-alquiler-plist-unrouted',
   templateUrl: './admin-alquiler-plist-unrouted.component.html',
   styleUrls: ['./admin-alquiler-plist-unrouted.component.css']
 })
 export class AdminAlquilerPlistUnroutedComponent implements OnInit {
+   @Input ()forceReload: Subject<boolean> = new Subject<boolean>();
   oPage: any = [];
   orderField: string = 'id';
   orderDirection: string = 'asc';

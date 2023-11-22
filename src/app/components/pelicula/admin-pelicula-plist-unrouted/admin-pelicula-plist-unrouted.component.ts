@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
+  providers:[ConfirmationService],
   selector: 'app-admin-pelicula-plist-unrouted',
   templateUrl: './admin-pelicula-plist-unrouted.component.html',
   styleUrls: ['./admin-pelicula-plist-unrouted.component.css']

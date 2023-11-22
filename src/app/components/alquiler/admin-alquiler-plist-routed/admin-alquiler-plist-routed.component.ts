@@ -9,6 +9,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
  // Asumiendo que tienes un servicio AlquilerAjaxService
 
 @Component({
+  providers:[ConfirmationService],
   selector: 'app-admin-alquiler-plist-routed',
   templateUrl: './admin-alquiler-plist-routed.component.html',
   styleUrls: ['./admin-alquiler-plist-routed.component.css']

@@ -7,6 +7,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 import { Subject } from 'rxjs/internal/Subject';
 @Component({
+  providers:[ConfirmationService],
   selector: 'app-admin-pelicula-plist-routed',
   templateUrl: './admin-pelicula-plist-routed.component.html',
   styleUrls: ['./admin-pelicula-plist-routed.component.css']
