@@ -25,7 +25,7 @@
           <th (click)="doOrder('telefono')">Teléfono</th>
           <th (click)="doOrder('rol')">Rol</th>
           <th (click)="doOrder('username')">Username</th>
-          <th (click)="doOrder('password')">Contraseña</th>
+          
           <th>Tools</th>
         </tr>
       </thead>
@@ -37,7 +37,7 @@
           <td>{{cliente.telefono}}</td>
           <td>{{cliente.rol ? 'Admin' : 'User'}}</td>
           <td> {{cliente.username}}</td>
-          <td> {{cliente.password}}</td>
+        
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <button class="btn btn-primary" (click)="onSelectUser(cliente)"><i class="pi pi-plus-circle"></i></button>

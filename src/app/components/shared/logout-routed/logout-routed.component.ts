@@ -23,7 +23,7 @@ export class LogoutRoutedComponent implements OnInit {
   logout() {
     this.oSessionService.logout();
     this.oSessionService.emit({ type: 'logout' });
-    this.oMatSnackBar.open("Logout successfull.", '', { duration: 2000 });
+    this.oMatSnackBar.open("Cierre de session exitoso.", '', { duration: 2000 });
     this.oRouter.navigate(['/home']);
   }
 
